@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  JMBPassMakeViewController.h
 //  密码生产器
 //
 //  Created by 张传奇 on 16/8/29.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface JMBPassMakeViewController : UIViewController
 
 @end
-
