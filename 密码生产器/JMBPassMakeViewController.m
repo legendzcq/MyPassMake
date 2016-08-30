@@ -24,15 +24,17 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
-   
+
+
     self.navigationItem.title = @"生成密码";
     
         [self setupView];
 }
 
 - (void)setupView {
-  
+    lengthValue = 25;
+    NumValue = 4;
+    signValue = 4;
     JMBPassMakeView * jmbView = [[JMBPassMakeView alloc] initWithFrame:(CGRect){0, 0, self.view.bounds.size}];
     
     self.jmbView = jmbView;
@@ -47,11 +49,14 @@
         IsReplaceValue = IsReplace;
      jmbView.passCont.text = [JMBPass passMakeLenth:Lvalue isNum:Nvalue singleNum:Svalue isLow:isLowe isReplace:IsReplace];
     }];
+    __weak typeof(self) weakSelf = self;
     [jmbView setCopyBtnAction:^{
-        NSLog(@"adfadfas");
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = weakSelf.jmbView.passCont.text;
+        [[[UIAlertView alloc] initWithTitle:@"" message:@"已经将密码复制" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
     }];
     [jmbView setMakeBtnAction:^{
-     jmbView.passCont.text = [JMBPass passMakeLenth:lengthValue isNum:NumValue singleNum:signValue isLow:isLoweValue isReplace:IsReplaceValue];
+     weakSelf.jmbView.passCont.text = [JMBPass passMakeLenth:lengthValue isNum:NumValue singleNum:signValue isLow:isLoweValue isReplace:IsReplaceValue];
     }];
 
 }

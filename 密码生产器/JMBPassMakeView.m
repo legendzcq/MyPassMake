@@ -55,7 +55,7 @@
     [self addSubview:lengthName];
     [lengthName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(100);
-        make.left.equalTo(self.mas_left).offset(40);
+        make.left.equalTo(self.mas_left).offset(20);
     }];
     
     UISlider * lengthcont = [UISlider new];
@@ -66,7 +66,7 @@
     [self addSubview:lengthcont];
     [lengthcont mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(lengthName.mas_centerY);
-        make.left.equalTo(lengthName.mas_right).offset(30);
+        make.left.equalTo(lengthName.mas_right).offset(10);
         make.size.mas_equalTo(CGSizeMake(200, 10));
     }];
     self.lengthcont = lengthcont;
@@ -86,7 +86,7 @@
     [self addSubview:NumName];
     [NumName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lengthName.mas_bottom).offset(40);
-        make.left.equalTo(self.mas_left).offset(40);
+        make.left.equalTo(lengthName.mas_left);
     }];
     
     UISlider * Numcont = [UISlider new];
@@ -97,7 +97,7 @@
     [self addSubview:Numcont];
     [Numcont mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(NumName.mas_centerY);
-        make.left.equalTo(NumName.mas_right).offset(30);
+        make.left.equalTo(NumName.mas_right).offset(10);
         make.size.mas_equalTo(CGSizeMake(200, 10));
     }];
     self.Numcont = Numcont;
@@ -116,7 +116,7 @@
     [self addSubview:signName];
     [signName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(NumName.mas_bottom).offset(40);
-        make.left.equalTo(self.mas_left).offset(40);
+        make.left.equalTo(lengthName.mas_left);
     }];
     UISlider * signcont = [UISlider new];
     signcont.minimumValue=0;
@@ -126,7 +126,7 @@
     [self addSubview:signcont];
     [signcont mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(signName.mas_centerY);
-        make.left.equalTo(signName.mas_right).offset(30);
+        make.left.equalTo(signName.mas_right).offset(10);
         make.size.mas_equalTo(CGSizeMake(200, 10));
     }];
     self.signcont = signcont;
@@ -140,6 +140,7 @@
     self.signNum = signNum;
     //选择小写字母
     UISwitch * Lowercase = [UISwitch new];
+    [Lowercase addTarget:self action:@selector(updateLowerValue:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:Lowercase];
     [Lowercase mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(signName.mas_bottom).offset(20);
@@ -155,6 +156,7 @@
     }];
     //允许重复使用
     UISwitch * repeat = [UISwitch new];
+   [repeat addTarget:self action:@selector(updaterepeatrValue:) forControlEvents:UIControlEventValueChanged];
     [self addSubview:repeat];
     [repeat mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(Lowercase.mas_bottom).offset(20);
@@ -192,8 +194,8 @@
     }];
     self.showPass = showPass;
     UITextField * passCont = [UITextField new];
-    passCont.text = @"123345sfgdsfgdfs";
-    secureIsSelect = YES;
+    passCont.enabled = NO;
+    secureIsSelect = NO;
       passCont.secureTextEntry = secureIsSelect;
     [passView addSubview:passCont];
     [passCont mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -233,7 +235,11 @@
     lengthValue = 25;
     NumValue = 4;
     signValue = 4;
-
+    isLowe=NO;
+    IsReplace=YES;
+    [self.Lowercase setOn:NO];
+    [self.repeat setOn:YES];
+    
 }
 -(void)updatelengthcontValue:(UISlider *)paramSender
 {
@@ -261,10 +267,29 @@
 -(void)updatesignValue:(UISlider *)paramSender
 {
     int f = paramSender.value;
-    self.signNum.text = [NSString stringWithFormat:@"%d/%d",f,MAXLENGTH];
+    self.signNum.text = [NSString stringWithFormat:@"%d/%d",f,MAXNUM];
     signValue = f;
     isLowe = self.Lowercase.isOn;
     IsReplace = self.repeat.isOn;
+    if (_lengthcontBlock) {
+        _lengthcontBlock(lengthValue,NumValue,signValue,isLowe,IsReplace);
+    }
+}
+
+
+-(void)updateLowerValue:(UISwitch *)paramSender
+{
+    isLowe = paramSender.isOn;
+    IsReplace = self.repeat.isOn;
+    if (_lengthcontBlock) {
+        _lengthcontBlock(lengthValue,NumValue,signValue,isLowe,IsReplace);
+    }
+}
+
+-(void)updaterepeatrValue:(UISwitch *)paramSender
+{
+    isLowe = self.Lowercase.isOn;
+    IsReplace = paramSender.isOn;
     if (_lengthcontBlock) {
         _lengthcontBlock(lengthValue,NumValue,signValue,isLowe,IsReplace);
     }
