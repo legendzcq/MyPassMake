@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^JMBPassMakeViewGetPassBlock)(NSString * passWord);
 @interface JMBPassMakeViewController : UIViewController
 
+-(void)getPassWord:(JMBPassMakeViewGetPassBlock) getPassBlock;
 @end

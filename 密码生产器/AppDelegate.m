@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "JMBPassMakeViewController.h"
+#import "HomeViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -19,8 +20,9 @@
     // Override point for customization after application launch.
 
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    JMBPassMakeViewController *rootController = [[JMBPassMakeViewController alloc]init];
+    HomeViewController *rootController = [[HomeViewController alloc]init];
     UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:rootController];
+    navController.navigationItem.title = @"存储模板";
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;

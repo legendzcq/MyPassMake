@@ -18,6 +18,7 @@
     __block BOOL IsReplaceValue;
 }
 @property(nonatomic,strong)JMBPassMakeView * jmbView;
+@property(nonatomic)JMBPassMakeViewGetPassBlock getPassBlock;
 @end
 
 @implementation JMBPassMakeViewController
@@ -53,7 +54,16 @@
     [jmbView setCopyBtnAction:^{
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = weakSelf.jmbView.passCont.text;
-        [[[UIAlertView alloc] initWithTitle:@"" message:@"已经将密码复制" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+        
+        if (_getPassBlock) {
+            _getPassBlock(weakSelf.jmbView.passCont.text);
+        }
+        
+//        [[[UIAlertView alloc] initWithTitle:@"" message:@"已经将密码复制" delegate:weakSelf cancelButtonTitle:@"OK" otherButtonTitles:nil, nil]show];
+        
+        
     }];
     [jmbView setMakeBtnAction:^{
      weakSelf.jmbView.passCont.text = [JMBPass passMakeLenth:lengthValue isNum:NumValue singleNum:signValue isLow:isLoweValue isReplace:IsReplaceValue];
@@ -67,5 +77,9 @@
 //    self.jmbView.lengthNum.text = @"sdafas";
 }
 
+-(void)getPassWord:(JMBPassMakeViewGetPassBlock)getPassBlock
+{
+    _getPassBlock = getPassBlock;
+}
 
 @end
