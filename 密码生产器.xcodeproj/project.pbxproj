@@ -20,8 +20,6 @@
 		9F910A2B1D73D48C007E1830 /* JMBPassMakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F910A2A1D73D48C007E1830 /* JMBPassMakeViewController.m */; };
 		9F910A2E1D73D597007E1830 /* JMBPassMakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F910A2D1D73D597007E1830 /* JMBPassMakeView.m */; };
 		9F910A311D741ED8007E1830 /* JMBPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F910A301D741ED8007E1830 /* JMBPass.m */; };
-		9FE4232C1D7D4EAA009A81BF /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9FE422D21D7D4EAA009A81BF /* LICENSE */; };
-		9FE4232D1D7D4EAA009A81BF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9FE422D31D7D4EAA009A81BF /* README.md */; };
 		9FE4232E1D7D4EAA009A81BF /* XLFormBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE422D81D7D4EAA009A81BF /* XLFormBaseCell.m */; };
 		9FE4232F1D7D4EAA009A81BF /* XLFormButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE422DA1D7D4EAA009A81BF /* XLFormButtonCell.m */; };
 		9FE423301D7D4EAA009A81BF /* XLFormCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE422DC1D7D4EAA009A81BF /* XLFormCheckCell.m */; };
@@ -110,8 +108,6 @@
 		9F910A2D1D73D597007E1830 /* JMBPassMakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMBPassMakeView.m; sourceTree = "<group>"; };
 		9F910A2F1D741ED8007E1830 /* JMBPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMBPass.h; sourceTree = "<group>"; };
 		9F910A301D741ED8007E1830 /* JMBPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMBPass.m; sourceTree = "<group>"; };
-		9FE422D21D7D4EAA009A81BF /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		9FE422D31D7D4EAA009A81BF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9FE422D71D7D4EAA009A81BF /* XLFormBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormBaseCell.h; sourceTree = "<group>"; };
 		9FE422D81D7D4EAA009A81BF /* XLFormBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLFormBaseCell.m; sourceTree = "<group>"; };
 		9FE422D91D7D4EAA009A81BF /* XLFormButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLFormButtonCell.h; sourceTree = "<group>"; };
@@ -326,8 +322,6 @@
 		9FE422D11D7D4EAA009A81BF /* XLForm */ = {
 			isa = PBXGroup;
 			children = (
-				9FE422D21D7D4EAA009A81BF /* LICENSE */,
-				9FE422D31D7D4EAA009A81BF /* README.md */,
 				9FE422D41D7D4EAA009A81BF /* XLForm */,
 			);
 			path = XLForm;
@@ -587,7 +581,6 @@
 			files = (
 				9F910A061D73CE8D007E1830 /* LaunchScreen.storyboard in Resources */,
 				9F910A031D73CE8D007E1830 /* Assets.xcassets in Resources */,
-				9FE4232C1D7D4EAA009A81BF /* LICENSE in Resources */,
 				9F910A011D73CE8D007E1830 /* Main.storyboard in Resources */,
 				9FE423521D7D4EAA009A81BF /* XLForm.bundle in Resources */,
 			);
@@ -696,7 +689,6 @@
 				9FE423441D7D4EAA009A81BF /* NSArray+XLFormAdditions.m in Sources */,
 				9FE4233B1D7D4EAA009A81BF /* XLFormSwitchCell.m in Sources */,
 				9F910A311D741ED8007E1830 /* JMBPass.m in Sources */,
-				9FE4232D1D7D4EAA009A81BF /* README.md in Sources */,
 				9FE4232F1D7D4EAA009A81BF /* XLFormButtonCell.m in Sources */,
 				9FE423341D7D4EAA009A81BF /* XLFormInlineSelectorCell.m in Sources */,
 				9FE4233A1D7D4EAA009A81BF /* XLFormStepCounterCell.m in Sources */,
