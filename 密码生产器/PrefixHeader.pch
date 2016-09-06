@@ -1,0 +1,45 @@
+//
+//  PrefixHeader.pch
+//  密码生产器
+//
+//  Created by 张传奇 on 16/9/6.
+//  Copyright © 2016年 张传奇. All rights reserved.
+//
+
+#ifndef prefix_pch
+#define prefix_pch
+
+#define MAS_SHORTHAND_GLOBALS
+
+#ifdef __OBJC__
+
+/*
+ *  Framework
+ */
+#import "Masonry.h"
+
+/*
+ *  Manager
+ */
+//#import "SGAccountManager.h"
+
+/*
+ *  Category
+ */
+#import "NSString+MD5.h"
+#import "MBProgressHUD+SGExtension.h"
+#import "UIImageView+WebCache.h"
+#import "UIImageView+SGExtension.h"
+/*
+ *  Utils
+ */
+#import "SGFileUtil.h"
+
+#endif
+
+#define RGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
+#define WS() __weak typeof(self) weakSelf = self
+#define DocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+
+#endif
+
