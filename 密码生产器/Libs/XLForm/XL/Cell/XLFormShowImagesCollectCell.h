@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^SGHomeViewCellActionBlock)(void);
 @class SGPhotoModel;
 @interface XLFormShowImagesCollectCell : UICollectionViewCell
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
 @property (nonatomic, strong) SGPhotoModel *album;
+- (void)setAction:(SGHomeViewCellActionBlock)actionBlock;
 @end

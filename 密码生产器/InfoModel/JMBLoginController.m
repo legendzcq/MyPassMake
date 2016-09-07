@@ -10,6 +10,7 @@
 #import "JMBPassMakeViewController.h"
 #import "QBImagePickerController.h"
 #import "SGPhotoModel.h"
+#import "SGPhotoViewController.h"
 @interface JMBLoginController() <QBImagePickerControllerDelegate>
 {
    __block XLFormDescriptor * formDescriptor;
@@ -18,7 +19,8 @@
     
     JMBPassMakeViewController * makepass;
 }
-
+@property(nonatomic,strong) NSMutableArray *photoModels;
+@property(nonatomic,strong)XLFormRowDescriptor * ShowImages;
 @end
 
 NSString *const kName = @"name";
@@ -40,8 +42,21 @@ NSString *const kButton = @"button";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MakePassClick:) name:@"DidClickMakePassBtn" object:Nil];
-}
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ShowImagesClick:) name:@"DidShowImagesClcik"object:Nil];
 
+}
+- (void)ShowImagesClick:(NSNotification *)notification
+{
+    NSDictionary * dic = [notification object];
+
+    //进入单个图片查看选项
+    SGPhotoViewController *vc = [SGPhotoViewController new];
+    vc.browser = self;
+    vc.index = [[dic objectForKey:@"index"] integerValue];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
 - (void)MakePassClick:(NSNotification *)notification
 {
 
@@ -149,12 +164,9 @@ NSString *const kButton = @"button";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kButton rowType:XLFormRowDescriptorTypeButton title:@"添加附件"];
     row.action.formSelector = @selector(didTouchButton:);
     [section addFormRow:row];
-    
-    
+//    [self loadFiles];
 //    row = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
-//    [section addFormRow:row];
-
-    
+//     [section addFormRow:row];
     return [super initWithForm:formDescriptor];
 }
     
@@ -172,13 +184,7 @@ NSString *const kButton = @"button";
 }
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
     [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-    
-    
-    XLFormRowDescriptor * buttonRow = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
-    [formDescriptor addFormRow:buttonRow afterRowTag:kButton];
-    
-    
-    
+
     
     PHImageRequestOptions *op = [[PHImageRequestOptions alloc] init];
     op.synchronous = YES;
@@ -222,6 +228,8 @@ NSString *const kButton = @"button";
             }];
         });
     }
+    
+
 }
 
 - (void)loadFiles {
@@ -239,9 +247,22 @@ NSString *const kButton = @"button";
         model.thumbURL = thumbURL;
         [photoModels addObject:model];
     }
-    
-    [self.tableView reloadData];
-}
 
+    self.photoModels  = photoModels;
+    XLFormRowDescriptor * ShowImages = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
+    ShowImages.value = self.photoModels;
+    if (self.ShowImages)
+    [formDescriptor removeFormRowWithTag:KShowImages];
+    
+    [formDescriptor addFormRow:ShowImages afterRowTag:kButton];
+    self.ShowImages = ShowImages;
+    
+
+
+}
+-(void)dealloc
+{
+ [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidShowImagesClcik" object:nil];
+}
 
 @end

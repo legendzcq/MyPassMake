@@ -7,13 +7,13 @@
 //
 
 #import "SGPhotoViewController.h"
-#import "SGPhotoBrowser.h"
+//#import "SGPhotoBrowser.h"
 #import "SGPhotoView.h"
 #import "SGPhotoModel.h"
 #import "SGPhotoToolBar.h"
 #import "SGUIKit.h"
 #import <AssetsLibrary/AssetsLibrary.h>
-
+#import "JMBLoginController.h"
 @interface SGPhotoViewController ()
 
 @property (nonatomic, assign) BOOL isBarHidden;
@@ -39,7 +39,7 @@
     SGPhotoView *photoView = [[SGPhotoView alloc] initWithFrame:[self getPhotoViewFrame]];
     self.photoView = photoView;
     self.photoView.controller = self;
-    self.photoView.browser = self.browser;
+//    self.photoView.browser = self.browser;
     self.photoView.index = self.index;
     [self.view addSubview:photoView];
     SGPhotoToolBar *tooBar = [[SGPhotoToolBar alloc] initWithFrame:[self getBarFrame]];
@@ -98,9 +98,9 @@
             [[NSFileManager defaultManager] removeItemAtPath:self.photoView.currentPhoto.photoURL.path error:nil];
             [[NSFileManager defaultManager] removeItemAtPath:self.photoView.currentPhoto.thumbURL.path error:nil];
             [self.navigationController popViewControllerAnimated:YES];
-            NSAssert(self.browser.reloadHandler != nil, @"you must implement 'reloadHandler' block to reload files while delete");
-            self.browser.reloadHandler();
-            [self.browser reloadData];
+//            NSAssert(self.browser.reloadHandler != nil, @"you must implement 'reloadHandler' block to reload files while delete");
+//            self.browser.reloadHandler();
+//            [self.browser reloadData];
         }
     } cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitlesArray:nil] showInView:self.view];
 }

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class SGPhotoModel;
-@class SGPhotoBrowser;
+@class JMBLoginController;
 
 @interface SGPhotoViewController : UIViewController
 
-@property (nonatomic, weak) SGPhotoBrowser *browser;
+@property (nonatomic, weak) JMBLoginController *browser;
 @property (nonatomic, assign) NSInteger index;
 
 @end

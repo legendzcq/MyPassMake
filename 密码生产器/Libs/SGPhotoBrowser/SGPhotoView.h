@@ -20,7 +20,7 @@ typedef void(^SGPhotoViewTapHandlerBlcok)(void);
 @interface SGPhotoView : UIScrollView
 
 @property (nonatomic, weak) SGPhotoViewController *controller;
-@property (nonatomic, weak) SGPhotoBrowser *browser;
+//@property (nonatomic, weak) SGPhotoBrowser *browser;
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, strong) SGPhotoModel *currentPhoto;
 @property (nonatomic, weak) SGZoomingImageView *currentImageView;

@@ -21,14 +21,19 @@
 @property (nonatomic, copy) SGPhotoViewTapHandlerBlcok singleTapHandler;
 @property (nonatomic, strong) NSArray<SGZoomingImageView *> *imageViews;
 @property (nonatomic, assign) NSInteger titleIndex;
-
+@property(nonatomic,strong) NSMutableArray *photoModels;
 @end
 
 @implementation SGPhotoView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+//        添加初始化信息
         [self commonInit];
+//        加载资源
+        [self loadFiles];
+//        获取
+        [self getImages];
     }
     return self;
 }
@@ -44,25 +49,9 @@
     [self.currentImageView toggleState:YES];
 }
 
-- (void)setBrowser:(SGPhotoBrowser *)browser {
-    _browser = browser;
-    NSInteger count = browser.numberOfPhotosHandler();
-    NSMutableArray *imageViews = @[].mutableCopy;
-    for (NSUInteger i = 0; i < count; i++) {
-        SGZoomingImageView *imageView = [SGZoomingImageView new];
-        SGPhotoModel *model = self.browser.photoAtIndexHandler(i);
-        [imageView.innerImageView sg_setImageWithURL:model.thumbURL model:model];
-        imageView.isOrigin = NO;
-        [imageViews addObject:imageView];
-        [self addSubview:imageView];
-        [imageView scaleToFitAnimated:NO];
-    }
-    self.imageViews = imageViews;
-    [self layoutImageViews];
-}
 
 - (void)layoutImageViews {
-    NSInteger count = self.browser.numberOfPhotosHandler();
+    NSInteger count = self.photoModels.count;
     CGFloat imageViewWidth = self.bounds.size.width;
     _pageW = imageViewWidth;
     self.contentSize = CGSizeMake(count * imageViewWidth, 0);
@@ -84,14 +73,14 @@
 }
 
 - (void)updateNavBarTitleWithIndex:(NSInteger)index {
-    self.controller.navigationItem.title = [NSString stringWithFormat:@"%@ Of %@",@(index + 1),@(self.browser.numberOfPhotosHandler())];
+    self.controller.navigationItem.title = [NSString stringWithFormat:@"%@ Of %lu",@(index + 1),(unsigned long)self.photoModels.count];
 }
 
 - (void)loadImageAtIndex:(NSInteger)index {
     self.titleIndex = index;
-    NSInteger count = self.browser.numberOfPhotosHandler();
+    NSInteger count = self.photoModels.count;
     for (NSInteger i = 0; i < count; i++) {
-        SGPhotoModel *model = self.browser.photoAtIndexHandler(i);
+        SGPhotoModel *model = self.photoModels[i];
         SGZoomingImageView *imageView = self.imageViews[i];
         if (i == index) {
             self.currentImageView = imageView;
@@ -131,9 +120,9 @@
     self.singleTapHandler = handler;
 }
 
-- (SGPhotoModel *)currentPhoto {
-    return self.browser.photoAtIndexHandler(_index);
-}
+//- (SGPhotoModel *)currentPhoto {
+//    return self.browser.photoAtIndexHandler(_index);
+//}
 
 - (void)setTitleIndex:(NSInteger)titleIndex {
     if (_titleIndex == titleIndex) return;
@@ -155,5 +144,46 @@
     CGFloat offsetX = scrollView.contentOffset.x;
     self.titleIndex = (offsetX + _pageW * 0.5f) / _pageW;
 }
+
+
+- (void)loadFiles {
+    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSString *photoPath = [SGFileUtil photoPathForRootPath:[SGFileUtil getRootPath]];
+    NSString *thumbPath = [SGFileUtil thumbPathForRootPath:[SGFileUtil getRootPath]];
+    NSMutableArray *photoModels = @[].mutableCopy;
+    NSArray *fileNames = [mgr contentsOfDirectoryAtPath:photoPath error:nil];
+    for (NSUInteger i = 0; i < fileNames.count; i++) {
+        NSString *fileName = fileNames[i];
+        NSURL *photoURL = [NSURL fileURLWithPath:[photoPath stringByAppendingPathComponent:fileName]];
+        NSURL *thumbURL = [NSURL fileURLWithPath:[thumbPath stringByAppendingPathComponent:fileName]];
+        SGPhotoModel *model = [SGPhotoModel new];
+        model.photoURL = photoURL;
+        model.thumbURL = thumbURL;
+        [photoModels addObject:model];
+    }
+    
+    self.photoModels  = photoModels;
+}
+
+#pragma mark --------------------------------
+#pragma mark- 设置缩略图界面数据 后期需要修改
+- (void)getImages {
+    NSInteger count = self.photoModels.count;
+    NSMutableArray *imageViews = @[].mutableCopy;
+    for (NSUInteger i = 0; i < count; i++) {
+        SGZoomingImageView *imageView = [SGZoomingImageView new];
+        SGPhotoModel *model = self.photoModels[i];;
+        [imageView.innerImageView sg_setImageWithURL:model.thumbURL model:model];
+        imageView.isOrigin = NO;
+        [imageViews addObject:imageView];
+        [self addSubview:imageView];
+        [imageView scaleToFitAnimated:NO];
+    }
+    self.imageViews = imageViews;
+    [self layoutImageViews];
+}
+
+
+
 
 @end

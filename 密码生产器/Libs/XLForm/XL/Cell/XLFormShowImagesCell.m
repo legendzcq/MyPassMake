@@ -9,10 +9,11 @@
 #import "XLFormShowImagesCell.h"
 #import "XLFormShowImagesCollectCell.h"
 #import "SGPhotoModel.h"
-@interface XLFormShowImagesCell () <UICollectionViewDelegate, UICollectionViewDataSource>
+#import "JMBPassMakeViewController.h"
+@interface XLFormShowImagesCell () <UICollectionViewDelegate, UICollectionViewDataSource,UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableArray<SGPhotoModel *> *albums;
-
+@property (nonatomic, strong) SGPhotoModel *currentSelectAlbum;
 @end
 @implementation XLFormShowImagesCell
 
@@ -30,7 +31,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
+ [self initUI];
     }
     return self;
 }
@@ -41,20 +42,14 @@
 {
       [super configure];
 
-    [self loadFiles];
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [self initUI];
-
-
-    
-    
 }
 
 -(void)initUI
 {
-//    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-      [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
     UICollectionView * ShowImagesviews = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 200) collectionViewLayout:layout];
     ShowImagesviews.alwaysBounceVertical = YES;
     ShowImagesviews.delegate = self;
@@ -70,23 +65,29 @@
     return self.albums.count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XLFormShowImagesCollectCell *cell = [XLFormShowImagesCollectCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     SGPhotoModel *album = self.albums[indexPath.row];
     cell.album = album;
-//    WS();
-//    [cell setAction:^{
-//        UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@"Operation" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
-//        [ac showInView:self.superview];
-//        weakSelf.currentSelectAlbum = album;
-//    }];
+    WS();
+    [cell setAction:^{
+        UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@"是否删除此照片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
+        [ac showInView:self.superview];
+        weakSelf.currentSelectAlbum = album;
+    }];
     return cell;
 }
 + (CGFloat)formDescriptorCellHeightForRowDescriptor:(XLFormRowDescriptor *)rowDescriptor
 {
     return 200;
 }
+-(void)update
+{
+    [super update];
+    self.albums = self.rowDescriptor.value;
+     [self.ShowImagesviews reloadData];
 
+}
 
 #pragma mark UICollectionView Delegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,21 +97,14 @@
     return UIEdgeInsetsMake(10, 10, 5, 10);
 }
 
--(BOOL)formDescriptorCellCanBecomeFirstResponder
-{
-    return (!self.rowDescriptor.isDisabled);
-}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 0) {
+        [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.thumbURL.path error:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.photoURL.path error:nil];
+        [self loadFiles];
+        
 
--(void)highlight
-{
-    [super highlight];
-    self.textLabel.textColor = self.tintColor;
-}
-
--(void)unhighlight
-{
-    [super unhighlight];
-    [self.formViewController updateFormRow:self.rowDescriptor];
+    }
 }
 
 - (void)loadFiles {
@@ -128,7 +122,17 @@
         model.thumbURL = thumbURL;
         [photoModels addObject:model];
     }
-    self.albums = photoModels;
+    
+    self.albums  = photoModels;
+
+    
     [self.ShowImagesviews reloadData];
+    
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@(indexPath.row),@"index", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DidShowImagesClcik" object:userInfo];
 }
 @end

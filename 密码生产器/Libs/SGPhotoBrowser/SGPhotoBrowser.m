@@ -89,11 +89,11 @@
                 break;
             }
             case SGBrowserToolButtonTrash: {
-                [[[SGBlockActionSheet alloc] initWithTitle:@"Please Confirm Delete" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                [[[SGBlockActionSheet alloc] initWithTitle:@"是否删除此照片" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                     if (buttonIndex == 0) {
                         [weakSelf handleBatchDelete];
                     }
-                } cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitlesArray:nil] showInView:self.view];
+                } cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitlesArray:nil] showInView:self.view];
                 break;
             }
         }
@@ -191,7 +191,7 @@
         [mgr removeItemAtPath:model.photoURL.path error:nil];
         [mgr removeItemAtPath:model.thumbURL.path error:nil];
     }
-    self.reloadHandler();
+
 }
 
 - (void)checkImplementation {
