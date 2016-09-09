@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <AVFoundation/AVFoundation.h>
 @interface SGFileUtil : NSObject
 
 //@property (nonatomic, strong) SGAccount *account;
@@ -17,7 +17,11 @@
 + (NSString *)getFileNameFromPath:(NSString *)filePath;
 + (void)savePhoto:(UIImage *)image toRootPath:(NSString *)rootPath withName:(NSString *)name;
 + (void)saveThumb:(UIImage *)image toRootPath:(NSString *)rootPath withName:(NSString *)name;
++ (void)saveVideo:(AVAsset *)asset toRootPath:(NSString *)rootPath withName:(NSString *)name;
 + (NSString *)photoPathForRootPath:(NSString *)rootPath;
 + (NSString *)thumbPathForRootPath:(NSString *)rootPath;
 + (NSString *)getRootPath;
+
++(BOOL)func_encodeFile:(NSString *)filePath;
++(BOOL)func_decodeFile:(NSString *)filePath;
 @end

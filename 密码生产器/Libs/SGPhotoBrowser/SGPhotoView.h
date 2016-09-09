@@ -16,16 +16,14 @@
 #define PhotoGutt 20
 
 typedef void(^SGPhotoViewTapHandlerBlcok)(void);
-
+typedef void(^getcurrentPhotoBlock)(SGPhotoModel *currentPhoto);
 @interface SGPhotoView : UIScrollView
 
 @property (nonatomic, weak) SGPhotoViewController *controller;
-//@property (nonatomic, weak) SGPhotoBrowser *browser;
 @property (nonatomic, assign) NSInteger index;
-@property (nonatomic, strong) SGPhotoModel *currentPhoto;
 @property (nonatomic, weak) SGZoomingImageView *currentImageView;
 
 - (void)setSingleTapHandlerBlock:(SGPhotoViewTapHandlerBlcok)handler;
 - (void)layoutImageViews;
-
+-(SGPhotoModel *)getcurrentPhoto;
 @end

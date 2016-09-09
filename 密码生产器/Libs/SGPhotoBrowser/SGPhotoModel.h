@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef NS_OPTIONS(NSInteger, SGMediaType) {
+    SGImageType = 0,
+    SGVideoType,
+    SGFileType
+};
 @interface SGPhotoModel : NSObject
+
 
 @property (nonatomic, copy) NSURL *photoURL;
 @property (nonatomic, copy) NSURL *thumbURL;
 @property (nonatomic, assign) BOOL isSelected;
-
 @end

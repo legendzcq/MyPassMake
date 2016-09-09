@@ -11,6 +11,10 @@
 #import "QBImagePickerController.h"
 #import "SGPhotoModel.h"
 #import "SGPhotoViewController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
+//#import "GTMBase64.h"
+// #import <MediaPlayer/MediaPlayer.h>
 @interface JMBLoginController() <QBImagePickerControllerDelegate>
 {
    __block XLFormDescriptor * formDescriptor;
@@ -21,6 +25,7 @@
 }
 @property(nonatomic,strong) NSMutableArray *photoModels;
 @property(nonatomic,strong)XLFormRowDescriptor * ShowImages;
+
 @end
 
 NSString *const kName = @"name";
@@ -47,16 +52,25 @@ NSString *const kButton = @"button";
 }
 - (void)ShowImagesClick:(NSNotification *)notification
 {
-    NSDictionary * dic = [notification object];
+    
+    
+        NSDictionary * dic = [notification object];
+    
+        //进入单个图片查看选项
+        SGPhotoViewController *vc = [SGPhotoViewController new];
+        vc.browser = self;
+        vc.index = [[dic objectForKey:@"index"] integerValue];
+        [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
 
-    //进入单个图片查看选项
-    SGPhotoViewController *vc = [SGPhotoViewController new];
-    vc.browser = self;
-    vc.index = [[dic objectForKey:@"index"] integerValue];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    
     
     
 }
+
 - (void)MakePassClick:(NSNotification *)notification
 {
 
@@ -164,15 +178,25 @@ NSString *const kButton = @"button";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:kButton rowType:XLFormRowDescriptorTypeButton title:@"添加附件"];
     row.action.formSelector = @selector(didTouchButton:);
     [section addFormRow:row];
-//    [self loadFiles];
-//    row = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
-//     [section addFormRow:row];
+    
+    [self loadFiles];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
+     [section addFormRow:row];
     return [super initWithForm:formDescriptor];
 }
     
 -(void)didTouchButton:(XLFormRowDescriptor *)sender
 {
     QBImagePickerController *picker = [QBImagePickerController new];
+    picker.maximumNumberOfSelection = 6;
+//    查看到的相册
+    picker.assetCollectionSubtypes = @[
+                                       @(PHAssetCollectionSubtypeSmartAlbumUserLibrary), //相机胶卷
+                                       @(PHAssetCollectionSubtypeAlbumMyPhotoStream), //我的照片流
+                                       @(PHAssetCollectionSubtypeSmartAlbumPanoramas) //全景图
+                                       ];
+//    显示的类别
+//    picker.mediaType = QBImagePickerMediaTypeImage;//图片
     picker.delegate = self;
     picker.allowsMultipleSelection = YES;
     picker.showsNumberOfSelectedAssets = YES;
@@ -184,10 +208,19 @@ NSString *const kButton = @"button";
 }
 - (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
     [imagePickerController dismissViewControllerAnimated:YES completion:nil];
-
+    
+    
+    
+    PHVideoRequestOptions * videoop = [[PHVideoRequestOptions alloc]init];
+     // 最高质量的视频
+    videoop.deliveryMode = PHVideoRequestOptionsDeliveryModeHighQualityFormat;
+    // 可从iCloud中获取图片
+    videoop.networkAccessAllowed = YES;
     
     PHImageRequestOptions *op = [[PHImageRequestOptions alloc] init];
+    //   自动返回高质量的图片,需要等待返回的图像才能进一步作出反应
     op.synchronous = YES;
+    
     MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:imagePickerController.view];
     [imagePickerController.view addSubview:hud];
     hud.mode = MBProgressHUDModeAnnularDeterminate;
@@ -211,25 +244,42 @@ NSString *const kButton = @"button";
             }
         });
     };
+    NSLog(@"%lu",(unsigned long)assets.count);
     for (int i = 0; i < assets.count; i++) {
-        PHAsset *asset = assets[i];
-        [importAssets addObject:asset];
+        PHAsset *tempasset = assets[i];
+        [importAssets addObject:tempasset];
         PHCachingImageManager *imageManager = [[PHCachingImageManager alloc] init];
         NSString *fileName = [[NSString stringWithFormat:@"%@%@",dateStr,@(i)] MD5];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [imageManager requestImageForAsset:asset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:op resultHandler:^(UIImage *result, NSDictionary *info) {
+            NSString * tempName = [NSString string];
+            if (tempasset.mediaType == PHAssetMediaTypeImage ) {
+                tempName =[NSString stringWithFormat:@"Image_"];
+                [imageManager requestImageForAsset:tempasset targetSize:PHImageManagerMaximumSize contentMode:PHImageContentModeAspectFill options:op resultHandler:^(UIImage *result, NSDictionary *info) {
+                    [SGFileUtil savePhoto:result toRootPath:[SGFileUtil getRootPath] withName:[NSString stringWithFormat:@"%@%@",tempName,fileName]];
+               hudProgressBlock(++progressCount);
+                }];
+            }else if (tempasset.mediaType == PHAssetMediaTypeVideo )
+            {
+
+                 tempName =[NSString stringWithFormat:@"Video_"];
+                [imageManager requestAVAssetForVideo:tempasset options:videoop resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                    [SGFileUtil saveVideo:asset toRootPath:[SGFileUtil getRootPath] withName:[NSString stringWithFormat:@"%@%@",tempName,fileName]];
+                     hudProgressBlock(++progressCount);
+                    
+                    
+                }];
                 
-                [SGFileUtil savePhoto:result toRootPath:[SGFileUtil getRootPath] withName:fileName];
-                hudProgressBlock(++progressCount);
-            }];
-            [imageManager requestImageForAsset:asset targetSize:CGSizeMake(120, 120) contentMode:PHImageContentModeAspectFill options:op resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                [SGFileUtil saveThumb:result toRootPath:[SGFileUtil getRootPath] withName:fileName];
+            }
+            
+            
+            [imageManager requestImageForAsset:tempasset targetSize:CGSizeMake(120, 120) contentMode:PHImageContentModeAspectFill options:op resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                [SGFileUtil saveThumb:result toRootPath:[SGFileUtil getRootPath] withName:[NSString stringWithFormat:@"%@%@",tempName,fileName]];
                 hudProgressBlock(++progressCount);
             }];
         });
     }
     
-
+    
 }
 
 - (void)loadFiles {
@@ -264,5 +314,7 @@ NSString *const kButton = @"button";
 {
  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidShowImagesClcik" object:nil];
 }
+
+
 
 @end

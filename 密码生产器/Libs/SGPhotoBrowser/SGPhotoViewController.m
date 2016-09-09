@@ -14,12 +14,15 @@
 #import "SGUIKit.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "JMBLoginController.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 @interface SGPhotoViewController ()
 
 @property (nonatomic, assign) BOOL isBarHidden;
 @property (nonatomic, weak) SGPhotoView *photoView;
 @property (nonatomic, weak) SGPhotoToolBar *toolBar;
-
+@property (nonatomic, strong)__block SGPhotoModel *currentPhoto;
+@property (strong, nonatomic) AVPlayerViewController *playerVC;
 @end
 
 @implementation SGPhotoViewController
@@ -39,8 +42,8 @@
     SGPhotoView *photoView = [[SGPhotoView alloc] initWithFrame:[self getPhotoViewFrame]];
     self.photoView = photoView;
     self.photoView.controller = self;
-//    self.photoView.browser = self.browser;
     self.photoView.index = self.index;
+
     [self.view addSubview:photoView];
     SGPhotoToolBar *tooBar = [[SGPhotoToolBar alloc] initWithFrame:[self getBarFrame]];
     self.toolBar = tooBar;
@@ -81,42 +84,75 @@
     CGFloat barY = self.view.bounds.size.height - barH;
     return CGRectMake(barX, barY, barW, barH);
 }
-
+//点击
 - (void)toggleBarState {
-    self.isBarHidden = !self.isBarHidden;
-    [[UIApplication sharedApplication] setStatusBarHidden:self.isBarHidden withAnimation:NO];
-    [self.navigationController setNavigationBarHidden:self.isBarHidden animated:YES];
-    [UIView animateWithDuration:0.35 animations:^{
-        self.toolBar.alpha = self.isBarHidden ? 0 : 1.0f;
-    }];
-}
+    
+    SGPhotoModel * model =[self.photoView getcurrentPhoto];
+    NSString * fileName = [SGFileUtil getFileNameFromPath:model.photoURL.path];
+    if ([fileName hasPrefix:@"Video_"]) {
+    
+        NSURL *url = model.photoURL;
+        [SGFileUtil func_decodeFile:url.path];
+        AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:url options:nil];
+        [self updateUserInterfaceForDuration:anAsset];
+        
+    }else if ([fileName hasPrefix:@"Image_"])
+    {
+        self.isBarHidden = !self.isBarHidden;
+        [[UIApplication sharedApplication] setStatusBarHidden:self.isBarHidden withAnimation:NO];
+        [self.navigationController setNavigationBarHidden:self.isBarHidden animated:YES];
+        [UIView animateWithDuration:0.35 animations:^{
+            self.toolBar.alpha = self.isBarHidden ? 0 : 1.0f;
+        }];
+    }
 
+    
+}
+-(void)updateUserInterfaceForDuration:(AVURLAsset *)anAsset
+{
+    AVPlayerItem *item =[[AVPlayerItem alloc]initWithAsset:anAsset];
+    
+    // 3.创建AVPlayer
+    AVPlayer * player = [[AVPlayer alloc] initWithPlayerItem:item];
+    
+    // 4.添加AVPlayerLayer
+    AVPlayerViewController *playerVC = [[AVPlayerViewController alloc] init];
+    playerVC.player = player;
+    playerVC.view.frame = self.view.frame;
+//        [self.view addSubview:playerVC.view];
+//    [self.navigationController pushViewController:playerVC animated:YES];
+    [self presentViewController:playerVC animated:YES completion:nil];
+    self.playerVC = playerVC;
+    //调用控制器的属性player的开始播放方法
+    [self.playerVC.player play];
+}
 #pragma mark - ToolBar Action
 - (void)trashAction {
-    [[[SGBlockActionSheet alloc] initWithTitle:@"Please Confirm Delete" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+    [[[SGBlockActionSheet alloc] initWithTitle:@"是否删除此照片" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 0) {
-            [[NSFileManager defaultManager] removeItemAtPath:self.photoView.currentPhoto.photoURL.path error:nil];
-            [[NSFileManager defaultManager] removeItemAtPath:self.photoView.currentPhoto.thumbURL.path error:nil];
-            [self.navigationController popViewControllerAnimated:YES];
-//            NSAssert(self.browser.reloadHandler != nil, @"you must implement 'reloadHandler' block to reload files while delete");
-//            self.browser.reloadHandler();
-//            [self.browser reloadData];
+
+            SGPhotoModel * tempModel =[self.photoView getcurrentPhoto];
+                [[NSFileManager defaultManager] removeItemAtPath:tempModel.thumbURL.path  error:nil];
+                [[NSFileManager defaultManager] removeItemAtPath:tempModel.photoURL.path error:nil];
+                 [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadShowsImages" object:nil];
+             
         }
-    } cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitlesArray:nil] showInView:self.view];
+    } cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitlesArray:nil] showInView:self.view];
 }
 
 - (void)exportAction {
-    [[[SGBlockActionSheet alloc] initWithTitle:@"Save To Where" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+    [[[SGBlockActionSheet alloc] initWithTitle:@"保存到手机" callback:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             ALAssetsLibrary *lib = [ALAssetsLibrary new];
             UIImage *image = self.photoView.currentImageView.innerImageView.image;
-            [MBProgressHUD showMessage:@"Saving"];
+            [MBProgressHUD showMessage:@"保存中..."];
             [lib writeImageToSavedPhotosAlbum:image.CGImage metadata:nil completionBlock:^(NSURL *assetURL, NSError *error) {
                 [MBProgressHUD hideHUD];
-                [MBProgressHUD showSuccess:@"Succeeded"];
+                [MBProgressHUD showSuccess:@"保存成功"];
             }];
         }
-    } cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitlesArray:@[@"Photo Library"]] showInView:self.view];
+    } cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitlesArray:@[@"保存"]] showInView:self.view];
 }
 
 #pragma mark - dealloc 

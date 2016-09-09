@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F3286D81D81380D002FE8BB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3286D71D81380D002FE8BB /* AVFoundation.framework */; };
 		9F45D8511D7D0D9300D90DAA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F45D8501D7D0D9300D90DAA /* HomeViewController.m */; };
+		9F6F93D11D82520D00C67BC1 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F93CF1D82520D00C67BC1 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F9109F81D73CE8D007E1830 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9109F71D73CE8D007E1830 /* main.m */; };
 		9F9109FB1D73CE8D007E1830 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9109FA1D73CE8D007E1830 /* AppDelegate.m */; };
 		9F910A011D73CE8D007E1830 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F9109FF1D73CE8D007E1830 /* Main.storyboard */; };
@@ -148,8 +150,13 @@
 /* Begin PBXFileReference section */
 		1C8DA3E71A484B4931C61048 /* Pods-密码生产器.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-密码生产器.debug.xcconfig"; path = "Pods/Target Support Files/Pods-密码生产器/Pods-密码生产器.debug.xcconfig"; sourceTree = "<group>"; };
 		4A1501C330B8261A305640EB /* Pods-密码生产器.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-密码生产器.release.xcconfig"; path = "Pods/Target Support Files/Pods-密码生产器/Pods-密码生产器.release.xcconfig"; sourceTree = "<group>"; };
+		9F3286D71D81380D002FE8BB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9F45D84F1D7D0D9300D90DAA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9F45D8501D7D0D9300D90DAA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		9F6F93C81D81702700C67BC1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		9F6F93CE1D82520D00C67BC1 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		9F6F93CF1D82520D00C67BC1 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		9F6F93D01D82520D00C67BC1 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		9F9109F31D73CE8D007E1830 /* 密码生产器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "密码生产器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9109F71D73CE8D007E1830 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9F9109F91D73CE8D007E1830 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -401,6 +408,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F3286D81D81380D002FE8BB /* AVFoundation.framework in Frameworks */,
 				A0CDD83FF4F7E9108E8BA09F /* libPods-密码生产器.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,6 +433,8 @@
 		3C51ADA5BE71C51A6D88F717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F6F93C81D81702700C67BC1 /* MediaPlayer.framework */,
+				9F3286D71D81380D002FE8BB /* AVFoundation.framework */,
 				C34435B44D9DD566E4720282 /* libPods-密码生产器.a */,
 			);
 			name = Frameworks;
@@ -573,6 +583,9 @@
 		9FF5D2001D7EB80200C37549 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				9F6F93CE1D82520D00C67BC1 /* GTMBase64.h */,
+				9F6F93CF1D82520D00C67BC1 /* GTMBase64.m */,
+				9F6F93D01D82520D00C67BC1 /* GTMDefines.h */,
 				9FF5D2011D7EB80200C37549 /* NSString+MD5.h */,
 				9FF5D2021D7EB80200C37549 /* NSString+MD5.m */,
 			);
@@ -1215,6 +1228,7 @@
 				9FF5D3501D7EB80200C37549 /* XLFormRegexValidator.m in Sources */,
 				9FF5D3461D7EB80200C37549 /* NSArray+XLFormAdditions.m in Sources */,
 				9FF5D3011D7EB80200C37549 /* QBAlbumCell.m in Sources */,
+				9F6F93D11D82520D00C67BC1 /* GTMBase64.m in Sources */,
 				9FF5D3261D7EB80200C37549 /* SGScrollImageView.m in Sources */,
 				9FF5D3111D7EB80200C37549 /* SDWebImageDownloaderOperation.m in Sources */,
 				9F45D8511D7D0D9300D90DAA /* HomeViewController.m in Sources */,

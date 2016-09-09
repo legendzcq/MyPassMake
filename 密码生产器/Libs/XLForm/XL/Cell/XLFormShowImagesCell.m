@@ -43,6 +43,12 @@
       [super configure];
 
       [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadShowsImage) name:@"ReloadShowsImages"object:Nil];
+}
+-(void)reloadShowsImage
+{
+    [self loadFiles];
+    [self.ShowImagesviews reloadData];
 }
 
 -(void)initUI
@@ -132,7 +138,15 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    
+    
     NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@(indexPath.row),@"index", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DidShowImagesClcik" object:userInfo];
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"ReloadShowsImages" object:nil];
 }
 @end

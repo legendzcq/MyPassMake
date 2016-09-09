@@ -19,6 +19,7 @@
 }
 
 @property (nonatomic, copy) SGPhotoViewTapHandlerBlcok singleTapHandler;
+@property (nonatomic, copy)getcurrentPhotoBlock currentBlock;
 @property (nonatomic, strong) NSArray<SGZoomingImageView *> *imageViews;
 @property (nonatomic, assign) NSInteger titleIndex;
 @property(nonatomic,strong) NSMutableArray *photoModels;
@@ -70,6 +71,7 @@
     _index = index;
     self.contentOffset = CGPointMake(index * _pageW, 0);
     [self loadImageAtIndex:index];
+    [self updateNavBarTitleWithIndex:index];
 }
 
 - (void)updateNavBarTitleWithIndex:(NSInteger)index {
@@ -120,9 +122,11 @@
     self.singleTapHandler = handler;
 }
 
-//- (SGPhotoModel *)currentPhoto {
-//    return self.browser.photoAtIndexHandler(_index);
-//}
+-(SGPhotoModel *)getcurrentPhoto
+{
+    return self.photoModels[_index];
+}
+
 
 - (void)setTitleIndex:(NSInteger)titleIndex {
     if (_titleIndex == titleIndex) return;
