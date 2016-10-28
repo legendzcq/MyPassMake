@@ -32,7 +32,7 @@
 //        添加初始化信息
         [self commonInit];
 //        加载资源
-        [self loadFiles];
+        self.photoModels = [SGFileUtil loadFiles:@"abc"];
 //        获取
         [self getImages];
     }
@@ -150,24 +150,7 @@
 }
 
 
-- (void)loadFiles {
-    NSFileManager *mgr = [NSFileManager defaultManager];
-    NSString *photoPath = [SGFileUtil photoPathForRootPath:[SGFileUtil getRootPath]];
-    NSString *thumbPath = [SGFileUtil thumbPathForRootPath:[SGFileUtil getRootPath]];
-    NSMutableArray *photoModels = @[].mutableCopy;
-    NSArray *fileNames = [mgr contentsOfDirectoryAtPath:photoPath error:nil];
-    for (NSUInteger i = 0; i < fileNames.count; i++) {
-        NSString *fileName = fileNames[i];
-        NSURL *photoURL = [NSURL fileURLWithPath:[photoPath stringByAppendingPathComponent:fileName]];
-        NSURL *thumbURL = [NSURL fileURLWithPath:[thumbPath stringByAppendingPathComponent:fileName]];
-        SGPhotoModel *model = [SGPhotoModel new];
-        model.photoURL = photoURL;
-        model.thumbURL = thumbURL;
-        [photoModels addObject:model];
-    }
-    
-    self.photoModels  = photoModels;
-}
+
 
 #pragma mark --------------------------------
 #pragma mark- 设置缩略图界面数据 后期需要修改

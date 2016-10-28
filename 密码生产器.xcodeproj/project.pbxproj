@@ -8,6 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		9F3286D81D81380D002FE8BB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3286D71D81380D002FE8BB /* AVFoundation.framework */; };
+		9F456B6A1D86786000D60A8F /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B511D86786000D60A8F /* CameraSessionView.m */; };
+		9F456B6B1D86786000D60A8F /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B551D86786000D60A8F /* CameraDismissButton.m */; };
+		9F456B6C1D86786000D60A8F /* CameraFlashButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B571D86786000D60A8F /* CameraFlashButton.m */; };
+		9F456B6D1D86786000D60A8F /* CameraFocalReticule.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B591D86786000D60A8F /* CameraFocalReticule.m */; };
+		9F456B6E1D86786000D60A8F /* CameraShutterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B5B1D86786000D60A8F /* CameraShutterButton.m */; };
+		9F456B6F1D86786000D60A8F /* CameraToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B5D1D86786000D60A8F /* CameraToggleButton.m */; };
+		9F456B701D86786000D60A8F /* LaunchCameraButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B5F1D86786000D60A8F /* LaunchCameraButton.m */; };
+		9F456B711D86786000D60A8F /* Cool Camera Mockup.sketch in Resources */ = {isa = PBXBuildFile; fileRef = 9F456B601D86786000D60A8F /* Cool Camera Mockup.sketch */; };
+		9F456B721D86786000D60A8F /* PaintCodeFile.pcvd in Resources */ = {isa = PBXBuildFile; fileRef = 9F456B611D86786000D60A8F /* PaintCodeFile.pcvd */; };
+		9F456B731D86786000D60A8F /* CameraStyleKitClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B641D86786000D60A8F /* CameraStyleKitClass.m */; };
+		9F456B741D86786000D60A8F /* CaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B671D86786000D60A8F /* CaptureSessionManager.m */; };
+		9F456B751D86786000D60A8F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B691D86786000D60A8F /* Constants.m */; };
 		9F45D8511D7D0D9300D90DAA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F45D8501D7D0D9300D90DAA /* HomeViewController.m */; };
 		9F6F93D11D82520D00C67BC1 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F93CF1D82520D00C67BC1 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9F9109F81D73CE8D007E1830 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9109F71D73CE8D007E1830 /* main.m */; };
@@ -151,6 +163,28 @@
 		1C8DA3E71A484B4931C61048 /* Pods-密码生产器.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-密码生产器.debug.xcconfig"; path = "Pods/Target Support Files/Pods-密码生产器/Pods-密码生产器.debug.xcconfig"; sourceTree = "<group>"; };
 		4A1501C330B8261A305640EB /* Pods-密码生产器.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-密码生产器.release.xcconfig"; path = "Pods/Target Support Files/Pods-密码生产器/Pods-密码生产器.release.xcconfig"; sourceTree = "<group>"; };
 		9F3286D71D81380D002FE8BB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9F456B501D86786000D60A8F /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
+		9F456B511D86786000D60A8F /* CameraSessionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSessionView.m; sourceTree = "<group>"; };
+		9F456B541D86786000D60A8F /* CameraDismissButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraDismissButton.h; sourceTree = "<group>"; };
+		9F456B551D86786000D60A8F /* CameraDismissButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraDismissButton.m; sourceTree = "<group>"; };
+		9F456B561D86786000D60A8F /* CameraFlashButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFlashButton.h; sourceTree = "<group>"; };
+		9F456B571D86786000D60A8F /* CameraFlashButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFlashButton.m; sourceTree = "<group>"; };
+		9F456B581D86786000D60A8F /* CameraFocalReticule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocalReticule.h; sourceTree = "<group>"; };
+		9F456B591D86786000D60A8F /* CameraFocalReticule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocalReticule.m; sourceTree = "<group>"; };
+		9F456B5A1D86786000D60A8F /* CameraShutterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraShutterButton.h; sourceTree = "<group>"; };
+		9F456B5B1D86786000D60A8F /* CameraShutterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraShutterButton.m; sourceTree = "<group>"; };
+		9F456B5C1D86786000D60A8F /* CameraToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraToggleButton.h; sourceTree = "<group>"; };
+		9F456B5D1D86786000D60A8F /* CameraToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraToggleButton.m; sourceTree = "<group>"; };
+		9F456B5E1D86786000D60A8F /* LaunchCameraButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCameraButton.h; sourceTree = "<group>"; };
+		9F456B5F1D86786000D60A8F /* LaunchCameraButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCameraButton.m; sourceTree = "<group>"; };
+		9F456B601D86786000D60A8F /* Cool Camera Mockup.sketch */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cool Camera Mockup.sketch"; sourceTree = "<group>"; };
+		9F456B611D86786000D60A8F /* PaintCodeFile.pcvd */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = PaintCodeFile.pcvd; sourceTree = "<group>"; };
+		9F456B631D86786000D60A8F /* CameraStyleKitClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraStyleKitClass.h; sourceTree = "<group>"; };
+		9F456B641D86786000D60A8F /* CameraStyleKitClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraStyleKitClass.m; sourceTree = "<group>"; };
+		9F456B661D86786000D60A8F /* CaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureSessionManager.h; sourceTree = "<group>"; };
+		9F456B671D86786000D60A8F /* CaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureSessionManager.m; sourceTree = "<group>"; };
+		9F456B681D86786000D60A8F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9F456B691D86786000D60A8F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9F45D84F1D7D0D9300D90DAA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		9F45D8501D7D0D9300D90DAA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9F6F93C81D81702700C67BC1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -449,6 +483,75 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9F456B4E1D86786000D60A8F /* CustomizableCamera */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B4F1D86786000D60A8F /* Camera View */,
+				9F456B521D86786000D60A8F /* Graphical Assets */,
+				9F456B651D86786000D60A8F /* Model Classes */,
+			);
+			path = CustomizableCamera;
+			sourceTree = "<group>";
+		};
+		9F456B4F1D86786000D60A8F /* Camera View */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B501D86786000D60A8F /* CameraSessionView.h */,
+				9F456B511D86786000D60A8F /* CameraSessionView.m */,
+			);
+			path = "Camera View";
+			sourceTree = "<group>";
+		};
+		9F456B521D86786000D60A8F /* Graphical Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B531D86786000D60A8F /* CameraViewComponents */,
+				9F456B601D86786000D60A8F /* Cool Camera Mockup.sketch */,
+				9F456B611D86786000D60A8F /* PaintCodeFile.pcvd */,
+				9F456B621D86786000D60A8F /* UI Assets */,
+			);
+			path = "Graphical Assets";
+			sourceTree = "<group>";
+		};
+		9F456B531D86786000D60A8F /* CameraViewComponents */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B541D86786000D60A8F /* CameraDismissButton.h */,
+				9F456B551D86786000D60A8F /* CameraDismissButton.m */,
+				9F456B561D86786000D60A8F /* CameraFlashButton.h */,
+				9F456B571D86786000D60A8F /* CameraFlashButton.m */,
+				9F456B581D86786000D60A8F /* CameraFocalReticule.h */,
+				9F456B591D86786000D60A8F /* CameraFocalReticule.m */,
+				9F456B5A1D86786000D60A8F /* CameraShutterButton.h */,
+				9F456B5B1D86786000D60A8F /* CameraShutterButton.m */,
+				9F456B5C1D86786000D60A8F /* CameraToggleButton.h */,
+				9F456B5D1D86786000D60A8F /* CameraToggleButton.m */,
+				9F456B5E1D86786000D60A8F /* LaunchCameraButton.h */,
+				9F456B5F1D86786000D60A8F /* LaunchCameraButton.m */,
+			);
+			path = CameraViewComponents;
+			sourceTree = "<group>";
+		};
+		9F456B621D86786000D60A8F /* UI Assets */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B631D86786000D60A8F /* CameraStyleKitClass.h */,
+				9F456B641D86786000D60A8F /* CameraStyleKitClass.m */,
+			);
+			path = "UI Assets";
+			sourceTree = "<group>";
+		};
+		9F456B651D86786000D60A8F /* Model Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9F456B661D86786000D60A8F /* CaptureSessionManager.h */,
+				9F456B671D86786000D60A8F /* CaptureSessionManager.m */,
+				9F456B681D86786000D60A8F /* Constants.h */,
+				9F456B691D86786000D60A8F /* Constants.m */,
+			);
+			path = "Model Classes";
+			sourceTree = "<group>";
+		};
 		9F9109EA1D73CE8D007E1830 = {
 			isa = PBXGroup;
 			children = (
@@ -569,6 +672,7 @@
 		9FF5D1FF1D7EB80200C37549 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9F456B4E1D86786000D60A8F /* CustomizableCamera */,
 				9FF5D2001D7EB80200C37549 /* Category */,
 				9FF5D2031D7EB80200C37549 /* MBProgressHUD */,
 				9FF5D2091D7EB80200C37549 /* MWPhotoBrowser */,
@@ -1071,11 +1175,13 @@
 				9FF5D3541D7EB80200C37549 /* XLForm.bundle in Resources */,
 				9F910A061D73CE8D007E1830 /* LaunchScreen.storyboard in Resources */,
 				9FF5D2EF1D7EB80200C37549 /* MBProgressHUD.bundle in Resources */,
+				9F456B721D86786000D60A8F /* PaintCodeFile.pcvd in Resources */,
 				9FF5D3001D7EB80200C37549 /* QBImagePicker.strings in Resources */,
 				9FF5D3061D7EB80200C37549 /* QBImagePicker.storyboard in Resources */,
 				9F910A031D73CE8D007E1830 /* Assets.xcassets in Resources */,
 				9FF5D2F21D7EB80200C37549 /* .gitkeep in Resources */,
 				9F910A011D73CE8D007E1830 /* Main.storyboard in Resources */,
+				9F456B711D86786000D60A8F /* Cool Camera Mockup.sketch in Resources */,
 				9FF5D2F11D7EB80200C37549 /* MWPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1160,6 +1266,7 @@
 				9FF5D3481D7EB80200C37549 /* NSObject+XLFormAdditions.m in Sources */,
 				9FF5D3271D7EB80200C37549 /* SGBlockActionSheet.m in Sources */,
 				9FF5D3511D7EB80200C37549 /* XLFormValidationStatus.m in Sources */,
+				9F456B6D1D86786000D60A8F /* CameraFocalReticule.m in Sources */,
 				9FF5D3321D7EB80200C37549 /* XLFormImageHeadCell.m in Sources */,
 				9FF5D31E1D7EB80200C37549 /* SGBrowserToolBar.m in Sources */,
 				9FF5D3121D7EB80200C37549 /* SDWebImageManager.m in Sources */,
@@ -1169,17 +1276,20 @@
 				9FF5D1FC1D7EB3EF00C37549 /* JMBPassMakeViewController.m in Sources */,
 				9FF5D2FD1D7EB80200C37549 /* DALabeledCircularProgressView.m in Sources */,
 				9FF5D3161D7EB80200C37549 /* UIImage+MultiFormat.m in Sources */,
+				9F456B751D86786000D60A8F /* Constants.m in Sources */,
 				9FF5D34F1D7EB80200C37549 /* XLFormTextView.m in Sources */,
 				9FF5D32A1D7EB80200C37549 /* UIImageView+SGExtension.m in Sources */,
 				9FF5D33E1D7EB80200C37549 /* XLFormTextFieldCell.m in Sources */,
 				9FF5D3381D7EB80200C37549 /* XLFormSelectorCell.m in Sources */,
 				9FF5D3051D7EB80200C37549 /* QBCheckmarkView.m in Sources */,
+				9F456B6E1D86786000D60A8F /* CameraShutterButton.m in Sources */,
 				9FF5D3101D7EB80200C37549 /* SDWebImageDownloader.m in Sources */,
 				9FF5D3521D7EB80200C37549 /* XLFormValidator.m in Sources */,
 				9FF5D3031D7EB80200C37549 /* QBAssetCell.m in Sources */,
 				9FF5D3171D7EB80200C37549 /* UIImage+WebP.m in Sources */,
 				9FF5D3531D7EB80200C37549 /* XLForm.m in Sources */,
 				9FF5D34C1D7EB80200C37549 /* XLFormRightDetailCell.m in Sources */,
+				9F456B701D86786000D60A8F /* LaunchCameraButton.m in Sources */,
 				9FF5D2FF1D7EB80200C37549 /* README.md in Sources */,
 				9FF5D33D1D7EB80200C37549 /* XLFormSwitchCell.m in Sources */,
 				9FF5D3081D7EB80200C37549 /* QBSlomoIconView.m in Sources */,
@@ -1218,15 +1328,20 @@
 				9FF5D1FD1D7EB3EF00C37549 /* JMBPass.m in Sources */,
 				9FF5D30D1D7EB80200C37549 /* SDImageCache.m in Sources */,
 				9FF5D30A1D7EB80200C37549 /* QBVideoIndicatorView.m in Sources */,
+				9F456B731D86786000D60A8F /* CameraStyleKitClass.m in Sources */,
 				9FF5D2FE1D7EB80200C37549 /* LICENSE.md in Sources */,
+				9F456B6F1D86786000D60A8F /* CameraToggleButton.m in Sources */,
 				9FF5D31D1D7EB80200C37549 /* SGBrowserSecondToolBar.m in Sources */,
 				9FF5D2F51D7EB80200C37549 /* MWGridViewController.m in Sources */,
+				9F456B6C1D86786000D60A8F /* CameraFlashButton.m in Sources */,
 				9FF5D3231D7EB80200C37549 /* SGPhotoToolBar.m in Sources */,
+				9F456B6B1D86786000D60A8F /* CameraDismissButton.m in Sources */,
 				9FF5D3301D7EB80200C37549 /* XLFormDatePickerCell.m in Sources */,
 				9FF5D3411D7EB80200C37549 /* XLFormOptionsViewController.m in Sources */,
 				9FF5D3291D7EB80200C37549 /* SGZoomingImageView.m in Sources */,
 				9FF5D3501D7EB80200C37549 /* XLFormRegexValidator.m in Sources */,
 				9FF5D3461D7EB80200C37549 /* NSArray+XLFormAdditions.m in Sources */,
+				9F456B6A1D86786000D60A8F /* CameraSessionView.m in Sources */,
 				9FF5D3011D7EB80200C37549 /* QBAlbumCell.m in Sources */,
 				9F6F93D11D82520D00C67BC1 /* GTMBase64.m in Sources */,
 				9FF5D3261D7EB80200C37549 /* SGScrollImageView.m in Sources */,
@@ -1254,6 +1369,7 @@
 				9FF5D3331D7EB80200C37549 /* XLFormInlineSelectorCell.m in Sources */,
 				9FF5D30B1D7EB80200C37549 /* MKAnnotationView+WebCache.m in Sources */,
 				9FF5D3211D7EB80200C37549 /* SGPhotoCollectionView.m in Sources */,
+				9F456B741D86786000D60A8F /* CaptureSessionManager.m in Sources */,
 				9FF5D2FC1D7EB80200C37549 /* DACircularProgressView.m in Sources */,
 				9FF5D3351D7EB80200C37549 /* XLFormPassWordCell.m in Sources */,
 				9FF5D2EE1D7EB80200C37549 /* MBProgressHUD+SGExtension.m in Sources */,

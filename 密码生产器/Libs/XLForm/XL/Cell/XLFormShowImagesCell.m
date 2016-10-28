@@ -47,7 +47,7 @@
 }
 -(void)reloadShowsImage
 {
-    [self loadFiles];
+    self.albums = [SGFileUtil loadFiles:@"abc"];
     [self.ShowImagesviews reloadData];
 }
 
@@ -107,34 +107,13 @@
     if(buttonIndex == 0) {
         [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.thumbURL.path error:nil];
         [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.photoURL.path error:nil];
-        [self loadFiles];
+        self.albums =[SGFileUtil loadFiles:@"abc"];
         
 
     }
 }
 
-- (void)loadFiles {
-    NSFileManager *mgr = [NSFileManager defaultManager];
-    NSString *photoPath = [SGFileUtil photoPathForRootPath:[SGFileUtil getRootPath]];
-    NSString *thumbPath = [SGFileUtil thumbPathForRootPath:[SGFileUtil getRootPath]];
-    NSMutableArray *photoModels = @[].mutableCopy;
-    NSArray *fileNames = [mgr contentsOfDirectoryAtPath:photoPath error:nil];
-    for (NSUInteger i = 0; i < fileNames.count; i++) {
-        NSString *fileName = fileNames[i];
-        NSURL *photoURL = [NSURL fileURLWithPath:[photoPath stringByAppendingPathComponent:fileName]];
-        NSURL *thumbURL = [NSURL fileURLWithPath:[thumbPath stringByAppendingPathComponent:fileName]];
-        SGPhotoModel *model = [SGPhotoModel new];
-        model.photoURL = photoURL;
-        model.thumbURL = thumbURL;
-        [photoModels addObject:model];
-    }
-    
-    self.albums  = photoModels;
 
-    
-    [self.ShowImagesviews reloadData];
-    
-}
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

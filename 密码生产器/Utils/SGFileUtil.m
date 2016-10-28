@@ -9,6 +9,7 @@
 #import "SGFileUtil.h"
  #import <MediaPlayer/MediaPlayer.h>
 #import "GTMBase64.h"
+#import "SGPhotoModel.h"
 @implementation SGFileUtil
 
 + (instancetype)sharedUtil {
@@ -108,10 +109,10 @@
                  case AVAssetExportSessionStatusCompleted:
                      
                      NSLog(@"AVAssetExportSessionStatusCompleted");
-                     if ([SGFileUtil func_encodeFile:temprootPath]) {
-                         NSLog(@"加密成功");
-                     }else
-                         NSLog(@"加密失败");
+//                     if ([SGFileUtil func_encodeFile:temprootPath]) {
+//                         NSLog(@"加密成功");
+//                     }else
+//                         NSLog(@"加密失败");
 //                     [MBProgressHUD hideHUD];
                      break;
                      
@@ -147,9 +148,9 @@
     [imageDate writeToFile:rootPath atomically:YES];
 }
 
-+ (NSString *)getRootPath {
++ (NSString *)getRootPath:( NSString * )lastPath {
 
-    NSString * rootPath = [DocumentPath stringByAppendingPathComponent:@"tempabc"];
+    NSString * rootPath = [DocumentPath stringByAppendingPathComponent:lastPath];
     NSFileManager *mgr = [NSFileManager defaultManager];
     if (![mgr fileExistsAtPath:rootPath isDirectory:nil]) {
         [mgr createDirectoryAtPath:rootPath withIntermediateDirectories:NO attributes:nil error:nil];
@@ -200,5 +201,21 @@
     
    return  [dataDecode writeToFile:filePath atomically:YES];
 }
-
++ (NSMutableArray *)loadFiles:( NSString * )lastPath {
+    NSFileManager *mgr = [NSFileManager defaultManager];
+    NSString *photoPath = [SGFileUtil photoPathForRootPath:[SGFileUtil getRootPath:lastPath]];
+    NSString *thumbPath = [SGFileUtil thumbPathForRootPath:[SGFileUtil getRootPath:lastPath]];
+    NSMutableArray *photoModels = @[].mutableCopy;
+    NSArray *fileNames = [mgr contentsOfDirectoryAtPath:photoPath error:nil];
+    for (NSUInteger i = 0; i < fileNames.count; i++) {
+        NSString *fileName = fileNames[i];
+        NSURL *photoURL = [NSURL fileURLWithPath:[photoPath stringByAppendingPathComponent:fileName]];
+        NSURL *thumbURL = [NSURL fileURLWithPath:[thumbPath stringByAppendingPathComponent:fileName]];
+        SGPhotoModel *model = [SGPhotoModel new];
+        model.photoURL = photoURL;
+        model.thumbURL = thumbURL;
+        [photoModels addObject:model];
+    }
+    return photoModels;
+}
 @end

@@ -20,8 +20,10 @@
 + (void)saveVideo:(AVAsset *)asset toRootPath:(NSString *)rootPath withName:(NSString *)name;
 + (NSString *)photoPathForRootPath:(NSString *)rootPath;
 + (NSString *)thumbPathForRootPath:(NSString *)rootPath;
-+ (NSString *)getRootPath;
++ (NSString *)getRootPath:( NSString * )lastPath;
 
 +(BOOL)func_encodeFile:(NSString *)filePath;
 +(BOOL)func_decodeFile:(NSString *)filePath;
++ (NSMutableArray *)loadFiles:( NSString * )lastPath;
+
 @end

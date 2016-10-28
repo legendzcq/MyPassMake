@@ -92,7 +92,7 @@
     if ([fileName hasPrefix:@"Video_"]) {
     
         NSURL *url = model.photoURL;
-        [SGFileUtil func_decodeFile:url.path];
+//        [SGFileUtil func_decodeFile:url.path];
         AVURLAsset *anAsset = [[AVURLAsset alloc] initWithURL:url options:nil];
         [self updateUserInterfaceForDuration:anAsset];
         
