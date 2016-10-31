@@ -288,6 +288,11 @@
 
 -(void)updaterepeatrValue:(UISwitch *)paramSender
 {
+    
+    if (_lengthcont.value-_Numcont.value-_signcont.value-26) {
+        [MBProgressHUD showError:@"输入条件错误"];
+        [paramSender setOn:NO];
+    }
     isLowe = self.Lowercase.isOn;
     IsReplace = paramSender.isOn;
     if (_lengthcontBlock) {

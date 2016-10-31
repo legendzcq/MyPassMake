@@ -123,20 +123,30 @@ NSString *const kButton = @"button";
 
 -(id)init
 {
+    //    标题
     formDescriptor = [XLFormDescriptor formDescriptorWithTitle:@"登录"];
     formDescriptor.assignFirstResponderOnShow = YES;
     
     
+    //    首行
     section = [XLFormSectionDescriptor formSectionWithTitle:@""];
     [formDescriptor addFormSection:section];
+    
+    
+    NSArray * saveImageArray = @[@"123"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SetLoginImage" object:saveImageArray];
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KImageHead rowType:XLFormRowDescriptorTypeImageHeard title:@"用户头像"];
     [row.cellConfigAtConfigure setObject:@"登录" forKey:@"textField.placeholder"];
+    [row.cellConfigAtConfigure setObject:[UIImage imageNamed:@"1"] forKey:@"IconImage.image"];
     row.required = YES;
+    row.value = @"123";
     [section addFormRow:row];
+    
     section = [XLFormSectionDescriptor formSection];
     [formDescriptor addFormSection:section];
     
-
+    
     
     
     //用户名称
@@ -153,10 +163,10 @@ NSString *const kButton = @"button";
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KNameTag rowType:XLFormRowDescriptorTypeEmail title:@"标签"];
     [row addValidator:[XLFormValidator emailValidator]];
     [section addFormRow:row];
-
-
+    
+    
     //修改日期
-
+    
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KlastTime rowType:XLFormRowDescriptorTypeInfo];
     row.title = @"修改日期";
     row.value =@"2016/9/5 at 9:45";
@@ -181,9 +191,9 @@ NSString *const kButton = @"button";
     row.action.formSelector = @selector(didTouchButton:);
     [section addFormRow:row];
     
-//    [self loadFiles];
-//    row = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
-//     [section addFormRow:row];
+    //    [self loadFiles];
+    //    row = [XLFormRowDescriptor formRowDescriptorWithTag:KShowImages rowType:XLFormRowDescriptorTypeShowImages title:@"备注"];
+    //     [section addFormRow:row];
     return [super initWithForm:formDescriptor];
 }
     

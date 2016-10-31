@@ -8,7 +8,9 @@
 
 #import "XLFormImageHeadCell.h"
 @interface XLFormImageHeadCell() <UITextFieldDelegate>
+
 @property NSMutableArray * dynamicCustomConstraints;
+
 @end
 @implementation XLFormImageHeadCell
 
@@ -33,6 +35,7 @@
     if (self) {
         _returnKeyType = UIReturnKeyDefault;
         _nextReturnKeyType = UIReturnKeyNext;
+        
     }
     return self;
 }
@@ -40,7 +43,7 @@
 -(void)dealloc
 {
     [self.textLabel removeObserver:self forKeyPath:@"text"];
-    [self.imageView removeObserver:self forKeyPath:@"image"];
+    [self.IconImage removeObserver:self forKeyPath:@"image"];
 }
 
 
@@ -51,18 +54,18 @@
     [super configure];
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     [self initUI];
-
     [self.textLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:0];
-    [self.imageView addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:0];
+    [self.IconImage addObserver:self forKeyPath:@"image" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:0];
     [self.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
 }
 
 -(void)initUI
 {
-    UIImageView * iconImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"123"]];
+    UIImageView * iconImage = [[UIImageView alloc]init];
     self.IconImage = iconImage;
     [self.contentView addSubview:self.IconImage];
-    iconImage.frame = CGRectMake(30, 15, 50, 50);
+    _IconImage.frame = CGRectMake(30, 15, 50, 50);
     
     UITextField * textfield = [[UITextField alloc]initWithFrame:CGRectMake(85, 15, 200,30)];
     self.textField = textfield;
