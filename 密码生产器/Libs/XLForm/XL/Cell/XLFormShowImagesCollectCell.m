@@ -8,7 +8,7 @@
 
 #import "XLFormShowImagesCollectCell.h"
 #import "Masonry.h"
-#import "SGPhotoModel.h"
+#import "LGPhotoModel.h"
 @interface XLFormShowImagesCollectCell ()
 
 @property (nonatomic, weak) UIImageView *backgroundImageView;
@@ -41,7 +41,7 @@
     press.minimumPressDuration = 0.5f;
     [self.contentView addGestureRecognizer:press];
 }
--(void)setAlbum:(SGPhotoModel *)album
+-(void)setAlbum:(LGPhotoModel *)album
 {
      NSURL *url = album.thumbURL;
     self.backgroundImageView.image = [UIImage imageWithContentsOfFile:url.path];;

@@ -9,8 +9,8 @@
 #import "JMBLoginController.h"
 #import "JMBPassMakeViewController.h"
 #import "QBImagePickerController.h"
-#import "SGPhotoModel.h"
-#import "SGPhotoViewController.h"
+#import "LGPhotoModel.h"
+#import "LGPhotoViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import "CameraSessionView.h"
@@ -49,7 +49,7 @@ NSString *const kButton = @"button";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(savePressed:)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MakePassClick:) name:@"DidClickMakePassBtn" object:Nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ShowImagesClick:) name:@"DidShowImagesClcik"object:Nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ShowImagesClick:) name:@"DidShowImagesClcik"object:Nil];
 
 }
 - (void)ShowImagesClick:(NSNotification *)notification
@@ -59,7 +59,7 @@ NSString *const kButton = @"button";
         NSDictionary * dic = [notification object];
     
         //进入单个图片查看选项
-        SGPhotoViewController *vc = [SGPhotoViewController new];
+        LGPhotoViewController *vc = [LGPhotoViewController new];
         vc.browser = self;
         vc.index = [[dic objectForKey:@"index"] integerValue];
         [self.navigationController pushViewController:vc animated:YES];
@@ -386,6 +386,7 @@ NSString *const kButton = @"button";
 {
  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"DidShowImagesClcik" object:nil];
 }
+
 
 
 

@@ -35,5 +35,101 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;/Libs/XLForm/XL/Cell/XLFormImageHeadCell.m"
+            timestampString = "499597141.491481"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-observeValueForKeyPath:ofObject:change:context:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;/Libs/XLForm/XL/Descriptors/XLFormRowDescriptor.m"
+            timestampString = "499593603.785467"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
+            landmarkName = "-doValidation"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;/Libs/XLForm/XL/Descriptors/XLFormRowDescriptor.m"
+            timestampString = "499596976.689368"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-configureCellAtCreationTime"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[XLFormRowDescriptor configureCellAtCreationTime]"
+                  moduleName = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangchuanqi/Documents/%E5%AF%86%E7%A0%81%E7%94%9F%E4%BA%A7%E5%99%A8%20/%E5%AF%86%E7%A0%81%E7%94%9F%E4%BA%A7%E5%99%A8/Libs/XLForm/XL/Descriptors/XLFormRowDescriptor.m"
+                  timestampString = "499596982.782233"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[XLFormRowDescriptor configureCellAtCreationTime]_block_invoke"
+                  moduleName = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/zhangchuanqi/Documents/%E5%AF%86%E7%A0%81%E7%94%9F%E4%BA%A7%E5%99%A8%20/%E5%AF%86%E7%A0%81%E7%94%9F%E4%BA%A7%E5%99%A8/Libs/XLForm/XL/Descriptors/XLFormRowDescriptor.m"
+                  timestampString = "499596982.782428"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5bc6;&#x7801;&#x751f;&#x4ea7;&#x5668;/Libs/XLForm/XL/Descriptors/XLFormRowDescriptor.m"
+            timestampString = "499596992.053575"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-configureCellAtCreationTime"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

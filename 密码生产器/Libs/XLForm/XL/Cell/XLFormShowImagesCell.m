@@ -8,12 +8,12 @@
 
 #import "XLFormShowImagesCell.h"
 #import "XLFormShowImagesCollectCell.h"
-#import "SGPhotoModel.h"
+#import "LGPhotoModel.h"
 #import "JMBPassMakeViewController.h"
 @interface XLFormShowImagesCell () <UICollectionViewDelegate, UICollectionViewDataSource,UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableArray<SGPhotoModel *> *albums;
-@property (nonatomic, strong) SGPhotoModel *currentSelectAlbum;
+@property (nonatomic, strong) LGPhotoModel *currentSelectAlbum;
 @end
 @implementation XLFormShowImagesCell
 

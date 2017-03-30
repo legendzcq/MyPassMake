@@ -9,7 +9,7 @@
 #import "SGFileUtil.h"
  #import <MediaPlayer/MediaPlayer.h>
 #import "GTMBase64.h"
-#import "SGPhotoModel.h"
+#import "LGPhotoModel.h"
 @implementation SGFileUtil
 
 + (instancetype)sharedUtil {
@@ -211,7 +211,7 @@
         NSString *fileName = fileNames[i];
         NSURL *photoURL = [NSURL fileURLWithPath:[photoPath stringByAppendingPathComponent:fileName]];
         NSURL *thumbURL = [NSURL fileURLWithPath:[thumbPath stringByAppendingPathComponent:fileName]];
-        SGPhotoModel *model = [SGPhotoModel new];
+        LGPhotoModel *model = [LGPhotoModel new];
         model.photoURL = photoURL;
         model.thumbURL = thumbURL;
         [photoModels addObject:model];
