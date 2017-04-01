@@ -24,6 +24,8 @@
 		474DF1641E782FD30073F986 /* UIBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 474DF1531E782FD30073F986 /* UIBlockAlertView.m */; };
 		474DF1651E782FD40073F986 /* UIImageView+SGExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 474DF1551E782FD30073F986 /* UIImageView+SGExtension.m */; };
 		474DF1671E7838B70073F986 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474DF1661E7838B70073F986 /* LocalAuthentication.framework */; };
+		47C7DEFA1E8F834600AC7D7E /* ShowDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47C7DEF91E8F834600AC7D7E /* ShowDocumentViewController.m */; };
+		47C7DEFC1E8F8D0500AC7D7E /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47C7DEFB1E8F8D0500AC7D7E /* QuickLook.framework */; };
 		9F3286D81D81380D002FE8BB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3286D71D81380D002FE8BB /* AVFoundation.framework */; };
 		9F456B6A1D86786000D60A8F /* CameraSessionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B511D86786000D60A8F /* CameraSessionView.m */; };
 		9F456B6B1D86786000D60A8F /* CameraDismissButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F456B551D86786000D60A8F /* CameraDismissButton.m */; };
@@ -196,6 +198,9 @@
 		474DF1541E782FD30073F986 /* UIImageView+SGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SGExtension.h"; sourceTree = "<group>"; };
 		474DF1551E782FD30073F986 /* UIImageView+SGExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SGExtension.m"; sourceTree = "<group>"; };
 		474DF1661E7838B70073F986 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		47C7DEF81E8F834600AC7D7E /* ShowDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDocumentViewController.h; sourceTree = "<group>"; };
+		47C7DEF91E8F834600AC7D7E /* ShowDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDocumentViewController.m; sourceTree = "<group>"; };
+		47C7DEFB1E8F8D0500AC7D7E /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		4A1501C330B8261A305640EB /* Pods-密码生产器.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-密码生产器.release.xcconfig"; path = "Pods/Target Support Files/Pods-密码生产器/Pods-密码生产器.release.xcconfig"; sourceTree = "<group>"; };
 		9F3286D71D81380D002FE8BB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9F456B501D86786000D60A8F /* CameraSessionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSessionView.h; sourceTree = "<group>"; };
@@ -235,10 +240,10 @@
 		9F910A051D73CE8D007E1830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F910A071D73CE8D007E1830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F910A0C1D73CE8E007E1830 /* 密码生产器Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "密码生产器Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F910A101D73CE8E007E1830 /* _____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _____Tests.m; sourceTree = "<group>"; };
+		9F910A101D73CE8E007E1830 /* _____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_____Tests.m"; sourceTree = "<group>"; };
 		9F910A121D73CE8E007E1830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F910A171D73CE8E007E1830 /* 密码生产器UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "密码生产器UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F910A1B1D73CE8E007E1830 /* _____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _____UITests.m; sourceTree = "<group>"; };
+		9F910A1B1D73CE8E007E1830 /* _____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "_____UITests.m"; sourceTree = "<group>"; };
 		9F910A1D1D73CE8E007E1830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF5D0621D7EB3EF00C37549 /* JMBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JMBLoginController.h; sourceTree = "<group>"; };
 		9FF5D0631D7EB3EF00C37549 /* JMBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JMBLoginController.m; sourceTree = "<group>"; };
@@ -444,6 +449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C7DEFC1E8F8D0500AC7D7E /* QuickLook.framework in Frameworks */,
 				474DF1671E7838B70073F986 /* LocalAuthentication.framework in Frameworks */,
 				9F3286D81D81380D002FE8BB /* AVFoundation.framework in Frameworks */,
 				A0CDD83FF4F7E9108E8BA09F /* libPods-密码生产器.a in Frameworks */,
@@ -470,6 +476,7 @@
 		3C51ADA5BE71C51A6D88F717 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47C7DEFB1E8F8D0500AC7D7E /* QuickLook.framework */,
 				474DF1661E7838B70073F986 /* LocalAuthentication.framework */,
 				9F6F93C81D81702700C67BC1 /* MediaPlayer.framework */,
 				9F3286D71D81380D002FE8BB /* AVFoundation.framework */,
@@ -680,6 +687,8 @@
 				9FF5D0631D7EB3EF00C37549 /* JMBLoginController.m */,
 				9FF5D0641D7EB3EF00C37549 /* JMBVipController.h */,
 				9FF5D0651D7EB3EF00C37549 /* JMBVipController.m */,
+				47C7DEF81E8F834600AC7D7E /* ShowDocumentViewController.h */,
+				47C7DEF91E8F834600AC7D7E /* ShowDocumentViewController.m */,
 			);
 			path = InfoModel;
 			sourceTree = "<group>";
@@ -1134,7 +1143,7 @@
 				TargetAttributes = {
 					9F9109F21D73CE8D007E1830 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = T45A9W8G69;
+						DevelopmentTeam = 6ZPG8GVY96;
 					};
 					9F910A0B1D73CE8E007E1830 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1277,6 +1286,7 @@
 				9FF5D2FD1D7EB80200C37549 /* DALabeledCircularProgressView.m in Sources */,
 				9FF5D3161D7EB80200C37549 /* UIImage+MultiFormat.m in Sources */,
 				9F456B751D86786000D60A8F /* Constants.m in Sources */,
+				47C7DEFA1E8F834600AC7D7E /* ShowDocumentViewController.m in Sources */,
 				9FF5D34F1D7EB80200C37549 /* XLFormTextView.m in Sources */,
 				9FF5D33E1D7EB80200C37549 /* XLFormTextFieldCell.m in Sources */,
 				9FF5D3381D7EB80200C37549 /* XLFormSelectorCell.m in Sources */,
@@ -1534,11 +1544,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6ZPG8GVY96;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/密码生产器/PrefixHeader.pch";
 				INFOPLIST_FILE = "密码生产器/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "---.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.microdone.jimibaoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1549,11 +1560,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6ZPG8GVY96;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/密码生产器/PrefixHeader.pch";
 				INFOPLIST_FILE = "密码生产器/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "---.-----";
+				PRODUCT_BUNDLE_IDENTIFIER = cn.microdone.jimibaoTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

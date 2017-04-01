@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "JMBLoginController.h"
 #import "JMBVipController.h"
-
+#import "ShowDocumentViewController.h"
 NSString * const JMBLOGINCON = @"JMBLoginController";
 NSString * const JMBVIPCON = @"JMBVipController";
 
@@ -37,8 +37,12 @@ NSString * const JMBVIPCON = @"JMBVipController";
     row.action.viewControllerClass = [JMBLoginController class];
     [section addFormRow:row];
     
-    row = [XLFormRowDescriptor formRowDescriptorWithTag:JMBVIPCON rowType:XLFormRowDescriptorTypeButton title:@"VIP选项"];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:JMBVIPCON rowType:XLFormRowDescriptorTypeButton title:@"导入文件功能"];
     row.action.viewControllerClass = [JMBVipController class];
+    [section addFormRow:row];
+    
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"ShowDocumentViewController" rowType:XLFormRowDescriptorTypeButton title:@"文件预览"];
+    row.action.viewControllerClass = [ShowDocumentViewController class];
     [section addFormRow:row];
     
     self.form = form;

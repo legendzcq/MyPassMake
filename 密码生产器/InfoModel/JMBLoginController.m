@@ -215,11 +215,35 @@ NSString *const kButton = @"button";
     [alert addAction:[UIAlertAction actionWithTitle:@"从相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [weakSelf openImagePicker];
     }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"导入文件" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf loadFileManager];
+
+        
+    }]];
     [self presentViewController:alert animated:YES completion:nil];
     
 
 
 }
+
+-(void)loadFileManager
+{
+
+    NSString * cachsting = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"%@",cachsting);
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSArray *folderContents = [fileManager
+                               contentsOfDirectoryAtURL:[NSURL URLWithString:cachsting]
+                               includingPropertiesForKeys:nil
+                               options:0
+                               error:&error];
+    NSLog(@"%@",folderContents);
+}
+
+
+
 -(void)openCamera
 {
     [self setNeedsStatusBarAppearanceUpdate];

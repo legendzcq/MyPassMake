@@ -4,60 +4,126 @@
 //
 //  Created by 张传奇 on 16/9/5.
 //  Copyright © 2016年 张传奇. All rights reserved.
-//
+//http://www.cnblogs.com/gcb999/archive/2013/04/23/3038759.html
 
 #import "JMBVipController.h"
+NSString *const kSwitchCheck = @"switchCheck";
+NSString *const kSelectorPush = @"selectorPush";
+
+@interface JMBVipController()<XLFormOptionObject>
+
+@end
 
 @implementation JMBVipController
-#pragma mark --摇一摇功能
-- (BOOL)canBecomeFirstResponder
+
+-(void)viewDidLoad
 {
-    return YES;// default is NO
-}
-- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    NSLog(@"开始摇动手机");
-}
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    NSLog(@"摇一摇成功");
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"MDZZ，摇个蛋蛋" preferredStyle:UIAlertControllerStyleAlert];
+    [super viewDidLoad];
+    UIBarButtonItem * barButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(SaveEnable:)];
+//    barButton.possibleTitles = [NSSet setWithObjects:@"Disable", @"Enable", nil];
+    self.navigationItem.rightBarButtonItem = barButton;
     
-    __weak typeof(alert) weakAlert = alert;
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-        NSLog(@"%@",[weakAlert.textFields.firstObject text]);
+}
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initializeForm];
+    }
+    return self;
+}
+
+-(void)initializeForm
+{
+    
+    NSArray * fileNsarray = [self loadFileManager];
+    
+    XLFormDescriptor * from = [XLFormDescriptor formDescriptorWithTitle:@"文件导入"];
+    
+    XLFormSectionDescriptor * section;
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"iTunes 内文件"];
+//    section.footerTitle = @"OthersFormViewController.h";
+    [from addFormSection:section];
+    XLFormRowDescriptor * row;
+    
+    
+    for (NSString * obj in fileNsarray) {
+        [section addFormRow:[XLFormRowDescriptor formRowDescriptorWithTag:obj rowType:XLFormRowDescriptorTypeBooleanCheck title:obj]];
+    }
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"文件处理"];
+    section.footerTitle = @"OthersFormViewController.h";
+    [from addFormSection:section];
+    row = [XLFormRowDescriptor formRowDescriptorWithTag:@"查看移动后文件" rowType:XLFormRowDescriptorTypeButton title:@"查看移动后文件"];
+    [row.cellConfigAtConfigure setObject:[UIColor purpleColor] forKey:@"backgroundColor"];
+    [row.cellConfig setObject:[UIColor whiteColor] forKey:@"textLabel.color"];
+    [row.cellConfig setObject:[UIFont fontWithName:@"Helvetica" size:20] forKey:@"textLabel.font"];
+    [section addFormRow:row];
+    row.action.formSelector = @selector(didTouchButton);
+//    row.action.formSelector = @selector(didTouchButton:);
+    self.form = from;
+}
+-(void)didTouchButton:(XLFormRowDescriptor *)sender
+{
+//   sender.value
+    NSLog(@"%@",sender.value);
+}
+-(NSArray *)loadFileManager
+{
+    
+    NSString * cachsting = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"%@",cachsting);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSArray *folderContents =[fileManager contentsOfDirectoryAtPath:cachsting error:&error];
+
+    
+    return folderContents;
+}
+
+
+-(void)SaveEnable:(UIButton *)sender
+{
+    
+    NSLog(@"%@",NSHomeDirectory() );
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString * formsting = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString * tostring =[[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"movefile"];
+ 
+    if ([fileManager createDirectoryAtPath:tostring withIntermediateDirectories:YES attributes:nil error:nil]) {
         
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
+        NSLog(@"创建成功");
+        
+    }
+    NSLog(@"%@",tostring);
     
-    [self cutterViewToDocument];
+    for (NSString *key in self.formValues) {
+        NSLog(@"key: %@ value: %@", key, self.formValues[key]);
+        if ([[self.formValues objectForKey:key] isEqual:[NSNull null]]) {
+            continue;
+        }
+        if ( [self.formValues[key] integerValue] ==1) {
+            [fileManager moveItemAtPath:[formsting stringByAppendingFormat:@"/%@", key] toPath:[tostring stringByAppendingFormat:@"/%@", key] error:nil];
+        }
+    }
     
-}
-- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-    NSLog(@"取消");
-}
-- (void)cutterViewToDocument
- {
-     
-//     allowScreenShot
-         UIWindow *screenWindow = [[UIApplication sharedApplication] keyWindow];
-    
-         UIGraphicsBeginImageContext(screenWindow.frame.size);
-         [screenWindow.layer renderInContext:UIGraphicsGetCurrentContext()];
-         UIImage *screenShot = UIGraphicsGetImageFromCurrentImageContext();
-         UIGraphicsEndImageContext();
-    
-         NSData *screenShotPNG = UIImagePNGRepresentation(screenShot);
-         NSError *error = nil;
-         [screenShotPNG writeToFile:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"error.png"] options:NSAtomicWrite error:&error];
-     }
-
--(Boolean)allowScreenShot
-{
-  
-    return NO;
+    [self initializeForm];
 }
 
+-(void)didTouchButton
+{
+    NSString * cachsting = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"movefile"];
+    NSLog(@"%@",cachsting);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSArray *folderContents =[fileManager contentsOfDirectoryAtPath:cachsting error:&error];
+    
+    
+    for (NSString * obj in folderContents) {
+        NSLog(@"%@",obj);
+    }
+}
 @end

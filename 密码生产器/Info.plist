@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>allowRemoteScreenObservation</key>
-	<false/>
-	<key>allowScreenShot</key>
-	<true/>
-	<key>UIFileSharingEnabled</key>
-	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>亲，打开相机好嘛</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>亲，打开相册好嘛</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -28,12 +26,12 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Agony need access to your photo library</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -51,5 +49,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>allowRemoteScreenObservation</key>
+	<false/>
+	<key>allowScreenShot</key>
+	<true/>
 </dict>
 </plist>
