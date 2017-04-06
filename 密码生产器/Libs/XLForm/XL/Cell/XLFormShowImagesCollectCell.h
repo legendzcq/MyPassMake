@@ -11,6 +11,6 @@ typedef void(^SGHomeViewCellActionBlock)(void);
 @class SGPhotoModel;
 @interface XLFormShowImagesCollectCell : UICollectionViewCell
 + (instancetype)cellWithCollectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
-@property (nonatomic, strong) SGPhotoModel *album;
+@property (nonatomic, strong) LGPhotoModel *album;
 - (void)setAction:(SGHomeViewCellActionBlock)actionBlock;
 @end

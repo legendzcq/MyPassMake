@@ -12,7 +12,7 @@
 #import "JMBPassMakeViewController.h"
 @interface XLFormShowImagesCell () <UICollectionViewDelegate, UICollectionViewDataSource,UIActionSheetDelegate>
 
-@property (nonatomic, strong) NSMutableArray<SGPhotoModel *> *albums;
+@property (nonatomic, strong) NSMutableArray<LGPhotoModel *> *albums;
 @property (nonatomic, strong) LGPhotoModel *currentSelectAlbum;
 @end
 @implementation XLFormShowImagesCell
@@ -73,7 +73,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XLFormShowImagesCollectCell *cell = [XLFormShowImagesCollectCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    SGPhotoModel *album = self.albums[indexPath.row];
+    LGPhotoModel *album = self.albums[indexPath.row];
     cell.album = album;
     WS();
     [cell setAction:^{
@@ -83,6 +83,13 @@
     }];
     return cell;
 }
+
+/**
+ 高度
+
+ @param rowDescriptor rowDescriptor description
+ @return return value description
+ */
 + (CGFloat)formDescriptorCellHeightForRowDescriptor:(XLFormRowDescriptor *)rowDescriptor
 {
     return 200;
@@ -108,8 +115,6 @@
         [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.thumbURL.path error:nil];
         [[NSFileManager defaultManager] removeItemAtPath:self.currentSelectAlbum.photoURL.path error:nil];
         self.albums =[SGFileUtil loadFiles:@"abc"];
-        
-
     }
 }
 
@@ -117,9 +122,6 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
-    
     
     NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@(indexPath.row),@"index", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DidShowImagesClcik" object:userInfo];

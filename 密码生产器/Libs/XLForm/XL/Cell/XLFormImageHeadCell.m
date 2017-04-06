@@ -8,7 +8,8 @@
 
 #import "XLFormImageHeadCell.h"
 @interface XLFormImageHeadCell() <UITextFieldDelegate>
-
+@property (nonatomic) UIImageView * IconImage;
+@property (nonatomic) UITextField * textField;
 @property NSMutableArray * dynamicCustomConstraints;
 
 @end
@@ -49,6 +50,9 @@
 
 #pragma mark - XLFormDescriptorCell
 
+/**
+ 配置函数
+ */
 -(void)configure
 {
     [super configure];

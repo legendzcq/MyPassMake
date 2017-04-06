@@ -927,9 +927,9 @@
 			children = (
 				9FF5D28F1D7EB80200C37549 /* Cell */,
 				9FF5D2BC1D7EB80200C37549 /* Controllers */,
-				9FF5D2C41D7EB80200C37549 /* Descriptors */,
-				9FF5D2CC1D7EB80200C37549 /* Helpers */,
-				9FF5D2E21D7EB80200C37549 /* Validation */,
+				9FF5D2C41D7EB80200C37549 /* Descriptors(描述) */,
+				9FF5D2CC1D7EB80200C37549 /* Helpers(分类) */,
+				9FF5D2E21D7EB80200C37549 /* Validation(限制) */,
 				9FF5D2EA1D7EB80200C37549 /* XLForm.h */,
 				9FF5D2EB1D7EB80200C37549 /* XLForm.m */,
 			);
@@ -1001,7 +1001,7 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		9FF5D2C41D7EB80200C37549 /* Descriptors */ = {
+		9FF5D2C41D7EB80200C37549 /* Descriptors(描述) */ = {
 			isa = PBXGroup;
 			children = (
 				9FF5D2C51D7EB80200C37549 /* XLFormDescriptor.h */,
@@ -1012,10 +1012,11 @@
 				9FF5D2CA1D7EB80200C37549 /* XLFormSectionDescriptor.h */,
 				9FF5D2CB1D7EB80200C37549 /* XLFormSectionDescriptor.m */,
 			);
+			name = "Descriptors(描述)";
 			path = Descriptors;
 			sourceTree = "<group>";
 		};
-		9FF5D2CC1D7EB80200C37549 /* Helpers */ = {
+		9FF5D2CC1D7EB80200C37549 /* Helpers(分类) */ = {
 			isa = PBXGroup;
 			children = (
 				9FF5D2CD1D7EB80200C37549 /* NSArray+XLFormAdditions.h */,
@@ -1032,6 +1033,7 @@
 				9FF5D2D81D7EB80200C37549 /* UIView+XLFormAdditions.m */,
 				9FF5D2D91D7EB80200C37549 /* Views */,
 			);
+			name = "Helpers(分类)";
 			path = Helpers;
 			sourceTree = "<group>";
 		};
@@ -1050,7 +1052,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		9FF5D2E21D7EB80200C37549 /* Validation */ = {
+		9FF5D2E21D7EB80200C37549 /* Validation(限制) */ = {
 			isa = PBXGroup;
 			children = (
 				9FF5D2E31D7EB80200C37549 /* XLFormRegexValidator.h */,
@@ -1061,6 +1063,7 @@
 				9FF5D2E81D7EB80200C37549 /* XLFormValidator.m */,
 				9FF5D2E91D7EB80200C37549 /* XLFormValidatorProtocol.h */,
 			);
+			name = "Validation(限制)";
 			path = Validation;
 			sourceTree = "<group>";
 		};

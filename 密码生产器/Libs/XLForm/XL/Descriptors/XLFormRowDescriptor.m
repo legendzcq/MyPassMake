@@ -493,9 +493,9 @@ CGFloat XLFormRowInitialHeight = -2;
 {
     XLFormValidationStatus *valStatus = nil;
 
-    if (self.required) {
+    if (self.required) { //判断输入是否为必须输入，如果为非必输则跳过
         // do required validation here
-        if ([self valueIsEmpty]) {
+        if ([self valueIsEmpty]) {//判断元素是否为空
             valStatus = [XLFormValidationStatus formValidationStatusWithMsg:@"" status:NO rowDescriptor:self];
             NSString *msg = nil;
             if (self.requireMsg != nil) {
@@ -514,10 +514,10 @@ CGFloat XLFormRowInitialHeight = -2;
             return valStatus;
         }
     }
-    // custom validator
+    // custom validator   遍历限制规则
     for(id<XLFormValidatorProtocol> v in self.validators) {
         if ([v conformsToProtocol:@protocol(XLFormValidatorProtocol)]) {
-            XLFormValidationStatus *vStatus = [v isValid:self];
+            XLFormValidationStatus *vStatus = [v isValid:self];//实现协议的方法 生成一个是否成功的模型
             // fail validation
             if (vStatus != nil && !vStatus.isValid) {
                 return vStatus;

@@ -14,9 +14,10 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import "CameraSessionView.h"
+#import "JMBVipController.h"
 //#import "GTMBase64.h"
 // #import <MediaPlayer/MediaPlayer.h>
-@interface JMBLoginController() <QBImagePickerControllerDelegate>
+@interface JMBLoginController() <QBImagePickerControllerDelegate,CACameraSessionDelegate>
 {
    __block XLFormDescriptor * formDescriptor;
     XLFormSectionDescriptor * section;
@@ -129,18 +130,18 @@ NSString *const kButton = @"button";
     
     
     //    首行
-    section = [XLFormSectionDescriptor formSectionWithTitle:@""];
+    section = [XLFormSectionDescriptor formSectionWithTitle:@"巴巴爸爸不"];
     [formDescriptor addFormSection:section];
     
     
-    NSArray * saveImageArray = @[@"123"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SetLoginImage" object:saveImageArray];
+
     
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KImageHead rowType:XLFormRowDescriptorTypeImageHeard title:@"用户头像"];
     [row.cellConfigAtConfigure setObject:@"登录" forKey:@"textField.placeholder"];
     [row.cellConfigAtConfigure setObject:[UIImage imageNamed:@"1"] forKey:@"IconImage.image"];
     row.required = YES;
     row.value = @"123";
+     [row addValidator:[XLFormValidator emailValidator]];
     [section addFormRow:row];
     
     section = [XLFormSectionDescriptor formSection];
@@ -161,7 +162,7 @@ NSString *const kButton = @"button";
     [section addFormRow:row];
     //标签
     row = [XLFormRowDescriptor formRowDescriptorWithTag:KNameTag rowType:XLFormRowDescriptorTypeEmail title:@"标签"];
-    [row addValidator:[XLFormValidator emailValidator]];
+    
     [section addFormRow:row];
     
     
@@ -202,9 +203,7 @@ NSString *const kButton = @"button";
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 
-//    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-////[self openCamera];
-//    }]];
+
     WS();
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
@@ -229,17 +228,10 @@ NSString *const kButton = @"button";
 -(void)loadFileManager
 {
 
-    NSString * cachsting = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSLog(@"%@",cachsting);
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error = nil;
-    NSArray *folderContents = [fileManager
-                               contentsOfDirectoryAtURL:[NSURL URLWithString:cachsting]
-                               includingPropertiesForKeys:nil
-                               options:0
-                               error:&error];
-    NSLog(@"%@",folderContents);
+;
+    
+    JMBVipController *  vipcon = [JMBVipController new];
+    [self.navigationController pushViewController:vipcon animated:YES];
 }
 
 

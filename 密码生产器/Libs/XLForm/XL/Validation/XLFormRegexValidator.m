@@ -47,7 +47,9 @@
             value = [value stringValue];
         }
         if ([value isKindOfClass:[NSString class]] && [value length] > 0) {
+            //通过谓词这种高级特性判断输入内容是否符合标准
             BOOL isValid = [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", self.regex] evaluateWithObject:[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+            //将结果建立一个模型
             return [XLFormValidationStatus formValidationStatusWithMsg:self.msg status:isValid rowDescriptor:row];
         }
     }

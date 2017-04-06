@@ -148,6 +148,7 @@
 {
     [super viewWillAppear:animated];
     NSIndexPath *selected = [self.tableView indexPathForSelectedRow];
+//    如果又被选中的
     if (selected){
         // Trigger a cell refresh
         XLFormRowDescriptor * rowDescriptor = [self.form formRowAtIndex:selected];
@@ -275,6 +276,12 @@
 
 #pragma mark - XLFormDescriptorDelegate
 
+/**
+ 往表单中动态插入cell
+
+ @param formRow formRow description
+ @param indexPath indexPath description
+ */
 -(void)formRowHasBeenAdded:(XLFormRowDescriptor *)formRow atIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView beginUpdates];

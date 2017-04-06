@@ -345,6 +345,12 @@ NSString * const XLValidationStatusErrorKey = @"XLValidationStatusErrorKey";
     return nil;
 }
 
+/**
+ 遍历所有元素返回不符合输入规则的元素，并且返回相应的错误信息
+
+ @param formViewController formViewController description
+ @return return value description
+ */
 -(NSArray *)localValidationErrors:(XLFormViewController *)formViewController {
     NSMutableArray * result = [NSMutableArray array];
     for (XLFormSectionDescriptor * section in self.formSections) {

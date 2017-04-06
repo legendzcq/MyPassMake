@@ -9,7 +9,6 @@
 #import "XLForm.h"
 
 @interface XLFormImageHeadCell : XLFormBaseCell<XLFormReturnKeyProtocol>
-@property (nonatomic) UIImageView * IconImage;
-@property (nonatomic) UITextField * textField;
+
 
 @end
